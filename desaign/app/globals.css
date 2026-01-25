@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+  
+  --gold-base: #a78b71;
+  --gold-light: #c9b8a0;
+  --gold-hover: #e8d5b7;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-inter), sans-serif;
+  overflow-x: hidden;
+}
+
+/* Dot Grid Background */
+.bg-dots {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Glassmorphism */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  @apply glass-panel rounded-3xl transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)];
+}
+
+.glass-pill {
+    @apply glass-panel rounded-full;
+}
+
+/* Typography utilities */
+.font-playfair {
+  font-family: var(--font-playfair), serif;
+}
+
+.font-inter {
+  font-family: var(--font-inter), sans-serif;
+}
+
+/* Neural node lines — stroke-width 2.5, gradient in SVG defs */
+.node-line {
+  stroke-width: 2.5;
+  fill: none;
+}
