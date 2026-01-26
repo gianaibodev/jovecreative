@@ -52,7 +52,7 @@ export const libraryCredits: LibraryCredit[] = [
     version: "16.1.0",
     author: "Vercel",
     license: "MIT",
-    purpose: "The backbone of the application, utilizing App Router for state-of-the-art routing and SSR/ISR performance.",
+    purpose: "Framework for performance-critical routing and efficient server-side rendering.",
     url: "https://nextjs.org"
   },
   {
@@ -60,7 +60,7 @@ export const libraryCredits: LibraryCredit[] = [
     version: "0.182.0",
     author: "mrdoob / pmndrs",
     license: "MIT",
-    purpose: "Powering the interactive 3D components and complex shader planes.",
+    purpose: "Engine for complex 3D visual logic and fragment shader execution.",
     url: "https://threejs.org"
   },
   {
@@ -68,7 +68,7 @@ export const libraryCredits: LibraryCredit[] = [
     version: "12.23.26",
     author: "Framer",
     license: "MIT",
-    purpose: "Handling the 'Apple-style' physics-based animations and page transitions.",
+    purpose: "Declarative orchestration of physics-based UI interaction.",
     url: "https://framer.com/motion"
   },
   {
@@ -76,7 +76,7 @@ export const libraryCredits: LibraryCredit[] = [
     version: "3.14.2",
     author: "GreenSock",
     license: "Standard",
-    purpose: "Orchestrating complex sequence-based animations in the hero and text reveals.",
+    purpose: "Advanced timeline management for precisely sequenced motion paths.",
     url: "https://gsap.com"
   }
 ];

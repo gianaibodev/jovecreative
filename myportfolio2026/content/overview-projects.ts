@@ -24,13 +24,13 @@ const rawOverviewProjects: OverviewProject[] = overviewProjectSchema.array().par
     title: "your des(ai)gn",
     subtitle: "AI and creative tools — dark luxury interface",
     summary:
-      "A dark-mode landing for high-end AI and creative tools: gold-on-black palette, glassmorphism, and neural-style connections. Built to showcase a premium, editorial feel with Playfair Display, Inter, and subtle motion.",
-    heroImage: "/legacy/assets/demopic/9.jpg", // Placeholder
+      "A premium digital environment built for creative tools, featuring a high-contrast dark interface, custom hardware-accelerated shaders, and precise typography. Implementation focuses on tactile feedback and high-performance animation.",
+    heroImage: "/legacy/assets/demopic/9.jpg",
     category: "Web Development",
     href: "https://desaign.gianaibo.tech",
-    ctaLabel: "Open your des(ai)gn",
-    tags: ["UI Design", "AI", "Luxury", "Dark Mode"],
-    roles: ["Lead Designer", "Frontend Engineer"],
+    ctaLabel: "Launch Project",
+    tags: ["Product Design", "WebGL", "UX Engineering", "Dark UI"],
+    roles: ["Creative Direction", "Full Stack Development"],
   },
 ]);
 

@@ -24,16 +24,16 @@ const geistMono = Geist_Mono({
 const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://gianaibo.tech";
 
 export const metadata: Metadata = {
-  title: "Gian Aibo Portfolio 2025",
-  description: "Computer Scientist | Product Designer | AI Enthusiast | Community Leader",
+  title: "Gian Aibo | Portfolio 2025",
+  description: "Computer Scientist | Experience Designer | AI Implementation | Technical Leader",
   metadataBase: new URL(baseUrl),
   icons: {
-    icon: "/lib/image.jpeg",
-    apple: "/lib/image.jpeg",
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
-    title: "Gian Aibo Portfolio 2025",
-    description: "Computer Scientist | Product Designer | AI Enthusiast | Community Leader",
+    title: "Gian Aibo | Portfolio 2025",
+    description: "Computer Scientist | Experience Designer | AI Implementation | Technical Leader",
     type: "website",
     url: baseUrl,
     siteName: "Gian Aibo Portfolio",
@@ -48,8 +48,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Gian Aibo Portfolio 2025",
-    description: "Computer Scientist | Product Designer | AI Enthusiast | Community Leader",
+    title: "Gian Aibo | Portfolio 2025",
+    description: "Computer Scientist | Experience Designer | AI Implementation | Technical Leader",
     images: ["/portfolio-screenshots/og-hero.jpg"],
   },
 };
