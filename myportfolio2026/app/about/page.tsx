@@ -228,105 +228,189 @@ function GradesModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
     return "text-yellow-400 bg-yellow-500/20";
   };
 
+  // Stats
   const perfectGrades = collegeGrades.filter((g) => g.grade === 1.0).length;
   const avgGrade = (collegeGrades.reduce((sum, g) => sum + g.grade, 0) / collegeGrades.length).toFixed(2);
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[1000] flex items-center justify-center p-2 sm:p-4">
+          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/90 backdrop-blur-xl"
+            className="absolute inset-0 bg-black/80 backdrop-blur-sm"
           />
 
+          {/* Modal */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 40 }}
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 40 }}
-            transition={{ type: "spring", damping: 30, stiffness: 200 }}
-            className="relative w-full max-w-5xl h-[85vh] md:h-[80vh] bg-zinc-950 border border-white/10 rounded-3xl overflow-hidden flex flex-col shadow-[0_0_100px_-20px_rgba(0,0,0,1)]"
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            className="relative w-full max-w-4xl max-h-[92dvh] bg-zinc-900 border border-zinc-300 dark:border-white/10 rounded-2xl overflow-hidden flex flex-col shadow-2xl"
           >
-            {/* Header */}
-            <div className="flex-shrink-0 p-6 sm:p-8 border-b border-white/5 bg-zinc-900/40">
-              <div className="flex items-start justify-between gap-6 mb-6">
-                <div>
-                  <h2 className="text-2xl sm:text-3xl font-black truncate tracking-tighter text-white">Full Academic History</h2>
-                  <p className="text-sm text-zinc-500 mt-1">B.S. Computer Science · University of St. La Salle · Class of 2025</p>
+            {/* Compact Header with Search */}
+            <div className="flex-shrink-0 p-4 sm:p-6 border-b border-zinc-300 dark:border-white/10 bg-zinc-900/80">
+              <div className="flex items-center justify-between gap-3 mb-4">
+                <div className="flex items-center gap-3 min-w-0">
+                  <div className="w-9 h-9 rounded-xl bg-blue-500/20 flex items-center justify-center flex-shrink-0">
+                    <FileText className="w-4 h-4 text-blue-400" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h2 className="text-lg sm:text-xl font-bold truncate tracking-tight text-white">Full College Transcript</h2>
+                    <p className="text-[10px] sm:text-xs text-muted-foreground line-clamp-1">Bachelor of Science in Computer Science • University of St. La Salle</p>
+                  </div>
                 </div>
                 <button
                   onClick={onClose}
-                  className="w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-all flex-shrink-0 group"
+                  className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 active:scale-90 flex items-center justify-center transition-all flex-shrink-0 touch-manipulation"
+                  aria-label="Close modal"
                 >
-                  <X className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                  <X className="w-5 h-5" />
                 </button>
               </div>
 
-              <div className="flex flex-col md:flex-row gap-4">
-                <div className="relative flex-1">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
-                  <input
-                    type="text"
-                    placeholder="Search curriculum..."
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full pl-12 pr-4 py-3 rounded-2xl bg-white/5 border border-white/10 focus:border-blue-500/50 focus:outline-none text-sm transition-all"
-                  />
-                </div>
-                <div className="flex gap-2">
-                  <div className="px-4 py-3 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-xs font-bold text-blue-400 flex items-center gap-2">
-                    GWA {avgGrade}
-                  </div>
-                  <div className="px-4 py-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-xs font-bold text-emerald-400 flex items-center gap-2">
-                    {perfectGrades} Perfect Marks
-                  </div>
-                </div>
+              {/* Search Bar */}
+              <div className="relative">
+                <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <input
+                  type="text"
+                  placeholder="Search curriculum..."
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="w-full pl-10 pr-10 py-2.5 rounded-xl bg-white/5 border border-zinc-300 dark:border-white/10 focus:border-blue-500/50 focus:outline-none text-sm touch-manipulation transition-all"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 p-1 rounded hover:bg-white/10"
+                  >
+                    <X className="w-3 h-3" />
+                  </button>
+                )}
               </div>
             </div>
 
-            {/* List */}
-            <div className="flex-1 overflow-y-auto px-6 sm:px-8 py-8 space-y-10 custom-scrollbar">
-              {Object.entries(groupedGrades).map(([term, grades]) => (
-                <div key={term} className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-600">{term}</span>
-                    <div className="h-px flex-1 bg-white/5" />
+            {/* Compact Stats + Legend Toggle */}
+            <div className="flex-shrink-0 px-4 py-3 border-b border-zinc-300 dark:border-white/10 bg-zinc-800/30">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+                <div className="flex items-center gap-6">
+                  <div className="flex flex-col">
+                    <span className="text-sm font-black text-blue-400 leading-none">{avgGrade}</span>
+                    <span className="text-[10px] uppercase font-bold text-muted-foreground mt-1">GWA</span>
                   </div>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-                    {grades.map((grade, idx) => (
-                      <div
-                        key={`${term}-${idx}`}
-                        className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.02] border border-white/[0.02] hover:bg-white/[0.04] hover:border-white/5 transition-all group"
-                      >
-                        <div className="min-w-0 pr-4">
-                          <span className="text-sm font-semibold text-zinc-300 group-hover:text-white transition-colors line-clamp-1">{grade.subject}</span>
-                          <span className="text-[10px] text-zinc-600 block mt-0.5">{grade.equivalent} Equivalent</span>
+                  <div className="flex flex-col">
+                    <span className="text-sm font-black text-emerald-400 leading-none">{perfectGrades}</span>
+                    <span className="text-[10px] uppercase font-bold text-muted-foreground mt-1">Perfect</span>
+                  </div>
+                </div>
+                <button
+                  onClick={() => setShowLegend(!showLegend)}
+                  className={`ml-auto text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-lg transition-all touch-manipulation ${showLegend ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/20' : 'bg-white/5 text-muted-foreground hover:bg-white/10'}`}
+                >
+                  {showLegend ? 'Hide Scale' : 'View Scale'}
+                </button>
+              </div>
+
+              {/* Collapsible Legend */}
+              <AnimatePresence>
+                {showLegend && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="pt-4 pb-1 grid grid-cols-2 sm:grid-cols-4 gap-2">
+                      <div className="flex items-center gap-2 text-[10px] font-medium text-muted-foreground px-2 py-1 rounded bg-white/5">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500" /> 1.0 = 100%
+                      </div>
+                      <div className="flex items-center gap-2 text-[10px] font-medium text-muted-foreground px-2 py-1 rounded bg-white/5">
+                        <span className="w-2 h-2 rounded-full bg-green-500" /> 1.1-1.5 = 95%
+                      </div>
+                      <div className="flex items-center gap-2 text-[10px] font-medium text-muted-foreground px-2 py-1 rounded bg-white/5">
+                        <span className="w-2 h-2 rounded-full bg-blue-500" /> 1.6-2.0 = 88%
+                      </div>
+                      <div className="flex items-center gap-2 text-[10px] font-medium text-muted-foreground px-2 py-1 rounded bg-white/5">
+                        <span className="w-2 h-2 rounded-full bg-yellow-500" /> 2.1+ = 85%
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Grades List - Scrollable */}
+            <div
+              className="flex-1 overflow-y-auto px-4 sm:px-6 py-6 space-y-8 scroll-smooth"
+              style={{ WebkitOverflowScrolling: 'touch' } as React.CSSProperties}
+            >
+              {/* Spotlight: highest grades in hardest subjects */}
+              {!searchQuery && (
+                <div>
+                  <h3 className="text-[10px] font-black uppercase tracking-widest text-emerald-400/80 mb-4 flex items-center gap-2">
+                    <Sparkles className="w-3 h-3" />
+                    Spotlight Achievements
+                  </h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                    {getSpotlightGrades().map((g) => (
+                      <div key={g.subject} className="flex flex-col p-3.5 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-colors">
+                        <div className="flex justify-between items-start gap-3">
+                          <span className="text-sm font-semibold text-zinc-300 leading-tight flex-1">{g.subject}</span>
+                          <span className={`text-[11px] font-black px-2 py-1 rounded-lg flex-shrink-0 ${getGradeColor(g.grade)}`}>{g.grade.toFixed(1)}</span>
                         </div>
-                        <span className={`text-xs font-black min-w-[40px] text-center px-2 py-1.5 rounded-xl ${getGradeColor(grade.grade)}`}>
-                          {grade.grade.toFixed(1)}
-                        </span>
+                        <span className="text-[10px] text-zinc-600 mt-2 font-medium tracking-wide">{g.equivalent} Equivalent Score</span>
                       </div>
                     ))}
                   </div>
                 </div>
-              ))}
+              )}
+
+              {/* All subjects by term */}
+              <div className="space-y-10">
+                {Object.entries(groupedGrades).map(([term, grades]) => (
+                  <div key={term} className="space-y-3">
+                    <div className="flex items-center gap-4">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-blue-400/80 whitespace-nowrap">{term}</span>
+                      <div className="h-px w-full bg-white/5" />
+                    </div>
+                    <div className="divide-y divide-white/[0.03]">
+                      {grades.map((grade, idx) => (
+                        <div
+                          key={`${term}-${idx}`}
+                          className="flex items-center justify-between py-3 px-1 group transition-colors"
+                        >
+                          <span className="text-sm font-medium text-zinc-400 group-hover:text-zinc-200 transition-colors line-clamp-2 pr-4">{grade.subject}</span>
+                          <div className="flex items-center gap-3 flex-shrink-0">
+                            <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-tighter hidden sm:inline">{grade.equivalent}</span>
+                            <span className={`text-[11px] font-black min-w-[34px] text-center px-1.5 py-1 rounded-lg ${getGradeColor(grade.grade)}`}>
+                              {grade.grade.toFixed(1)}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
 
               {filteredGrades.length === 0 && (
-                <div className="py-24 text-center opacity-40">
-                  <p className="text-sm font-medium">No records found for &quot;{searchQuery}&quot;</p>
+                <div className="py-20 text-center">
+                  <p className="text-sm text-muted-foreground font-medium">No matches found for &quot;{searchQuery}&quot;</p>
                 </div>
               )}
             </div>
 
-            {/* Footer */}
-            <div className="flex-shrink-0 px-8 py-5 border-t border-white/5 bg-zinc-900/60 backdrop-blur-xl">
-              <div className="flex items-center justify-between text-[11px] font-medium text-zinc-600">
-                <span>PH Grading System: 1.0 (Highest) to 5.0 (Lowest)</span>
-                <span className="hidden sm:block">USLS Bacolod · College of Engineering & Technology</span>
-              </div>
+            {/* Compact Footer */}
+            <div className="flex-shrink-0 px-6 py-4 bg-zinc-950/80 border-t border-white/5 backdrop-blur-md">
+              <p className="text-[10px] text-center font-bold uppercase tracking-widest text-zinc-600">
+                Official Records · Class of 2025 · University of St. La Salle
+              </p>
             </div>
           </motion.div>
         </div>
