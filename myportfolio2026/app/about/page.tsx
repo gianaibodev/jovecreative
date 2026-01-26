@@ -234,23 +234,23 @@ function GradesModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[1000] flex items-center justify-center sm:p-4">
-          {/* Backdrop - Only visible on desktop */}
+        <div className="fixed inset-0 z-[1000] flex items-start justify-center p-4 sm:p-6 overflow-y-auto pt-[8dvh] sm:pt-[5vh]">
+          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/80 backdrop-blur-sm hidden sm:block"
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm"
           />
 
-          {/* Modal */}
+          {/* Modal Popup */}
           <motion.div
-            initial={{ opacity: 0, y: "100%" }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: "100%" }}
-            transition={{ type: "spring", damping: 25, stiffness: 300, mass: 0.8 }}
-            className="relative w-full h-full sm:h-auto sm:max-w-4xl sm:max-h-[85vh] bg-zinc-900 border-none sm:border sm:border-zinc-300 dark:sm:border-white/10 sm:rounded-3xl overflow-hidden flex flex-col shadow-2xl"
+            initial={{ opacity: 0, scale: 0.9, y: 30 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 30 }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="relative w-full max-w-4xl h-auto max-h-[82vh] bg-zinc-900 border border-white/10 rounded-[2rem] sm:rounded-3xl overflow-hidden flex flex-col shadow-2xl"
           >
             {/* Header */}
             <div className="flex-shrink-0 p-5 sm:p-7 border-b border-white/5 bg-zinc-900/95 backdrop-blur-xl sticky top-0 z-20">
@@ -260,7 +260,7 @@ function GradesModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
                     <FileText className="w-5 h-5 text-blue-400" />
                   </div>
                   <div className="min-w-0">
-                    <h2 className="text-xl sm:text-2xl font-black truncate tracking-tighter text-white">Academic Record</h2>
+                    <h2 className="text-xl sm:text-2xl font-black truncate tracking-tighter text-white">Transcript</h2>
                     <p className="text-[10px] sm:text-xs text-zinc-500 font-bold uppercase tracking-widest mt-0.5">University of St. La Salle · B.S. CS</p>
                   </div>
                 </div>
