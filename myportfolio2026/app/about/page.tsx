@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import MacOSMenuBar from "@/components/ui/mac-os-menu-bar";
 import { PixelHeader } from "@/components/ui/pixel-header";
-import { GraduationCap, Award, Trophy, Users, Sparkles, X, Search, FileText } from "lucide-react";
+import { GraduationCap, Award, Trophy, Users, Sparkles, X, Search, FileText, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { certificationsByProvider, certificationCounts, certificationUrls } from "@/content/certifications";
 
@@ -197,6 +197,77 @@ const accolades = {
   certifications: { google: 11, canva: 3, ibm: 1, microsoft: 7 },
 };
 
+function AchievementArchiveModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const allAwards = [
+    ...accolades.college.awards,
+    ...accolades.seniorHigh.awards,
+    ...accolades.seniorHigh.honors.map(h => `[SHS Honors] ${h}`),
+    ...accolades.juniorHigh.awards,
+    ...accolades.juniorHigh.roles,
+    ...accolades.elementary.awards,
+    ...accolades.elementary.roles
+  ];
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 overflow-hidden">
+          <m.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={onClose}
+            className="absolute inset-0 bg-black/90 backdrop-blur-2xl"
+          />
+
+          <m.div
+            initial={{ opacity: 0, scale: 0.9, y: 40 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 40 }}
+            transition={{ type: "spring", damping: 30, stiffness: 200 }}
+            className="relative w-full max-w-2xl h-[80vh] bg-zinc-950 border border-white/10 rounded-[2.5rem] overflow-hidden flex flex-col shadow-2xl"
+          >
+            <div className="flex-shrink-0 p-8 border-b border-white/5 bg-zinc-900/30 backdrop-blur-md flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-black text-white tracking-tighter">Achievement Archive</h2>
+                <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest mt-1 opacity-60">Complete History · 2009–2025</p>
+              </div>
+              <button
+                onClick={onClose}
+                className="w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-all"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-8 space-y-4">
+              <div className="space-y-2">
+                <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-blue-500 mb-4">Complete Award Ledger</h3>
+                {allAwards.map((award, i) => (
+                  <m.div
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.01 }}
+                    key={i}
+                    className="p-4 rounded-xl bg-white/[0.03] border border-white/5 text-sm text-zinc-300 leading-relaxed flex gap-4"
+                  >
+                    <span className="text-zinc-600 font-mono text-[10px] pt-1 mt-0.5">{String(i + 1).padStart(3, '0')}</span>
+                    {award}
+                  </m.div>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex-shrink-0 px-8 py-5 bg-zinc-950 border-t border-white/5">
+              <p className="text-[9px] text-center font-black uppercase tracking-[0.4em] text-zinc-800">Verified Personal Record · Gian Aibo Boyero</p>
+            </div>
+          </m.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
+}
+
 function GradesModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -233,7 +304,7 @@ function GradesModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
     <AnimatePresence>
       {isOpen && (
         <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 overflow-hidden">
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -241,7 +312,7 @@ function GradesModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
             className="absolute inset-0 bg-black/90 backdrop-blur-2xl"
           />
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.9, y: 40 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 40 }}
@@ -332,7 +403,7 @@ function GradesModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
             <div className="flex-shrink-0 px-8 py-5 bg-zinc-950 border-t border-white/5">
               <p className="text-[9px] text-center font-black uppercase tracking-[0.4em] text-zinc-800">Verified Academic Record · USLS Bacolod</p>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       )}
     </AnimatePresence>
@@ -345,11 +416,7 @@ export default function AboutPage() {
   const { copyMode } = useCopyMode();
   const [mounted, setMounted] = useState(false);
   const [showGrades, setShowGrades] = useState(false);
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
-
-  const toggleSection = (section: string) => {
-    setExpandedSections(prev => ({ ...prev, [section]: !prev[section] }));
-  };
+  const [showArchive, setShowArchive] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -357,7 +424,7 @@ export default function AboutPage() {
 
   // Prevent body scroll when modal is open
   useEffect(() => {
-    if (showGrades) {
+    if (showGrades || showArchive) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
@@ -365,7 +432,7 @@ export default function AboutPage() {
     return () => {
       document.body.style.overflow = "";
     };
-  }, [showGrades]);
+  }, [showGrades, showArchive]);
 
   if (!mounted) return null;
 
@@ -388,7 +455,7 @@ export default function AboutPage() {
       <section className="px-4 sm:px-6 lg:px-10 py-12">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12">
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="rounded-2xl p-6 border border-blue-500/30 dark:border-blue-500/20 bg-blue-500/10">
+            <m.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }} className="rounded-2xl p-6 border border-blue-500/30 dark:border-blue-500/20 bg-blue-500/10">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-3 h-3 bg-blue-500 rounded-full" />
                 <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">GWA</span>
@@ -397,8 +464,8 @@ export default function AboutPage() {
               <div className="flex flex-wrap gap-1.5">
                 <span className="px-2.5 py-0.5 rounded-full bg-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-medium">97%</span>
               </div>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="rounded-2xl p-6 border border-emerald-500/30 dark:border-emerald-500/20 bg-emerald-500/10">
+            </m.div>
+            <m.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="rounded-2xl p-6 border border-emerald-500/30 dark:border-emerald-500/20 bg-emerald-500/10">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-3 h-3 bg-emerald-500 rounded-full" />
                 <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">Rank</span>
@@ -407,8 +474,8 @@ export default function AboutPage() {
               <div className="flex flex-wrap gap-1.5">
                 <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 text-xs font-medium">of 7,042 · 1st Year</span>
               </div>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="rounded-2xl p-6 border border-amber-500/30 dark:border-amber-500/20 bg-amber-500/10">
+            </m.div>
+            <m.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="rounded-2xl p-6 border border-amber-500/30 dark:border-amber-500/20 bg-amber-500/10">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-3 h-3 bg-amber-500 rounded-full" />
                 <span className="text-sm font-semibold text-amber-600 dark:text-amber-400">Honors</span>
@@ -417,8 +484,8 @@ export default function AboutPage() {
               <div className="flex flex-wrap gap-1.5">
                 <span className="px-2.5 py-0.5 rounded-full bg-amber-500/20 text-amber-600 dark:text-amber-400 text-xs font-medium">2025</span>
               </div>
-            </motion.div>
-            <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }} className="rounded-2xl p-6 border border-violet-500/30 dark:border-violet-500/20 bg-violet-500/10">
+            </m.div>
+            <m.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }} className="rounded-2xl p-6 border border-violet-500/30 dark:border-violet-500/20 bg-violet-500/10">
               <div className="flex items-center gap-2 mb-2">
                 <div className="w-3 h-3 bg-violet-500 rounded-full" />
                 <span className="text-sm font-semibold text-violet-600 dark:text-violet-400">Certifications</span>
@@ -427,7 +494,7 @@ export default function AboutPage() {
               <div className="flex flex-wrap gap-1.5">
                 <span className="px-2.5 py-0.5 rounded-full bg-violet-500/20 text-violet-600 dark:text-violet-400 text-xs font-medium">Google, Microsoft, IBM, Canva, DataCamp, GitHub, YouTube</span>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </div>
       </section>
@@ -521,222 +588,74 @@ export default function AboutPage() {
       {/* Awards - 3 Columns */}
       <section className="px-4 sm:px-6 lg:px-10 py-16">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-3xl font-bold mb-10 flex items-center gap-3">
-            <Trophy className="w-8 h-8 text-yellow-500" />
-            Awards & Achievements
-          </h2>
-
-          {/* College — Honors | Awards | Affiliations & Leadership */}
-          <div className="p-6 rounded-2xl border border-blue-500/20 bg-blue-500/5 mb-12">
-            <div className="flex items-center gap-2 mb-1">
-              <div className="w-2.5 h-2.5 bg-blue-500 rounded-full" />
-              <h3 className="text-lg font-bold text-blue-600 dark:text-blue-400">College</h3>
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+            <div>
+              <h2 className="text-3xl md:text-5xl font-black mb-4 flex items-center gap-3 tracking-tighter">
+                <Trophy className="w-10 h-10 text-yellow-500" />
+                Awards & Achievements
+              </h2>
+              <p className="text-muted-foreground text-lg max-w-xl">A condensed view of major creative and academic wins. Explore the full history below.</p>
             </div>
-            <p className="text-xs text-muted-foreground mb-6">University of St. La Salle</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Col 1: Honors + Deans&apos; List */}
-              <div className="space-y-5">
-                <div>
-                  <h4 className="text-sm font-semibold mb-3 flex items-center gap-2"><Award className="w-4 h-4 text-blue-500" /> Honors</h4>
-                  <div className="space-y-3">
-                    {accolades.college.honors.map((h, i) => (
-                      <div key={i} className="p-4 rounded-xl border border-zinc-300 dark:border-white/10 bg-white/5 text-sm leading-relaxed">{h}</div>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <h4 className="text-sm font-semibold mb-3 flex items-center gap-2"><Award className="w-4 h-4 text-blue-500" /> Deans&apos; List</h4>
-                  <div className="p-4 rounded-xl border border-zinc-300 dark:border-white/10 bg-white/5">
-                    <ul className="text-sm space-y-1.5 text-muted-foreground">
-                      {accolades.college.deansList.map((d, i) => (
-                        <li key={i}>{d}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-              {/* Col 2: Awards */}
-              <div>
-                <h4 className="text-sm font-semibold mb-3 flex items-center gap-2"><Trophy className="w-4 h-4 text-amber-500" /> Awards</h4>
-                <div className="space-y-3">
-                  {(expandedSections.collegeAwards ? accolades.college.awards : accolades.college.awards.slice(0, 5)).map((a, i) => (
-                    <div key={i} className="p-4 rounded-xl border border-amber-500/20 bg-amber-500/5 text-sm leading-relaxed">{a}</div>
-                  ))}
-                </div>
-                {accolades.college.awards.length > 5 && (
-                  <button
-                    onClick={() => toggleSection('collegeAwards')}
-                    className="mt-4 w-full py-2.5 px-4 rounded-xl border border-zinc-300 dark:border-white/10 bg-white/5 hover:bg-white/10 text-sm font-medium transition-all"
-                  >
-                    {expandedSections.collegeAwards ? 'Show Less' : `Show ${accolades.college.awards.length - 5} More`}
-                  </button>
-                )}
-              </div>
-              {/* Col 3: Affiliations & Leadership */}
-              <div>
-                <h4 className="text-sm font-semibold mb-3 flex items-center gap-2"><Users className="w-4 h-4 text-emerald-500" /> Affiliations & Leadership</h4>
-                <div className="space-y-3">
-                  {(expandedSections.collegeLeadership ? accolades.college.affiliations : accolades.college.affiliations.slice(0, 5)).map((a, i) => (
-                    <div key={i} className="p-4 rounded-xl border border-emerald-500/20 bg-emerald-500/5 text-sm leading-relaxed">{a}</div>
-                  ))}
-                </div>
-                {accolades.college.affiliations.length > 5 && (
-                  <button
-                    onClick={() => toggleSection('collegeLeadership')}
-                    className="mt-4 w-full py-2.5 px-4 rounded-xl border border-zinc-300 dark:border-white/10 bg-white/5 hover:bg-white/10 text-sm font-medium transition-all"
-                  >
-                    {expandedSections.collegeLeadership ? 'Show Less' : `Show ${accolades.college.affiliations.length - 5} More`}
-                  </button>
-                )}
-              </div>
-            </div>
+            <button
+              onClick={() => setShowArchive(true)}
+              className="px-8 py-4 rounded-full bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 font-bold border border-blue-500/20 transition-all flex items-center gap-2"
+            >
+              Open Full Archive
+              <ArrowUpRight size={18} />
+            </button>
           </div>
 
-          {/* Other Levels - 3 Columns */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Senior High */}
-            <div className="p-6 rounded-2xl border border-green-500/20 bg-green-500/5">
-              <h3 className="text-lg font-bold mb-2 text-green-600 dark:text-green-400 flex items-center gap-2">
-                <div className="w-2.5 h-2.5 bg-green-500 rounded-full" />
-                Senior High School
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <div className="p-8 rounded-[32px] border border-blue-500/20 bg-blue-500/5">
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
+                <div className="w-2.5 h-2.5 bg-blue-500 rounded-full" />
+                College
               </h3>
-              <p className="text-xs text-muted-foreground mb-4">{accolades.seniorHigh.school} — {accolades.seniorHigh.strand}</p>
               <div className="space-y-4">
-                <div>
-                  <h4 className="text-xs font-semibold mb-2 text-green-600/90 dark:text-green-400/90">Honors</h4>
-                  <div className="space-y-2">
-                    {accolades.seniorHigh.honors.map((item, i) => (
-                      <div key={i} className="p-3 rounded-lg bg-white/5 dark:bg-white/[0.03] text-sm leading-relaxed">{item}</div>
-                    ))}
-                  </div>
-                </div>
-                {expandedSections.seniorHigh && (
-                  <>
-                    <div>
-                      <h4 className="text-xs font-semibold mb-2 text-green-600/90 dark:text-green-400/90">Awards</h4>
-                      <div className="space-y-2">
-                        {accolades.seniorHigh.awards.map((item, i) => (
-                          <div key={i} className="p-3 rounded-lg bg-white/5 dark:bg-white/[0.03] text-sm leading-relaxed">{item}</div>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="text-xs font-semibold mb-2 text-green-600/90 dark:text-green-400/90">Affiliations</h4>
-                      <div className="space-y-2">
-                        {accolades.seniorHigh.affiliations.map((item, i) => (
-                          <div key={i} className="p-3 rounded-lg bg-white/5 dark:bg-white/[0.03] text-sm leading-relaxed">{item}</div>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="text-xs font-semibold mb-2 text-green-600/90 dark:text-green-400/90">Roles</h4>
-                      <div className="space-y-2">
-                        {accolades.seniorHigh.roles.map((item, i) => (
-                          <div key={i} className="p-3 rounded-lg bg-white/5 dark:bg-white/[0.03] text-sm leading-relaxed">{item}</div>
-                        ))}
-                      </div>
-                    </div>
-                  </>
-                )}
+                {accolades.college.honors.map((h, i) => (
+                  <div key={i} className="p-4 rounded-2xl bg-white/5 border border-white/5 text-sm font-medium leading-relaxed">{h}</div>
+                ))}
+                {accolades.college.awards.slice(0, 3).map((a, i) => (
+                  <div key={i} className="p-4 rounded-2xl bg-amber-500/5 border border-amber-500/10 text-sm italic opacity-80">{a}</div>
+                ))}
               </div>
-              <button
-                onClick={() => toggleSection('seniorHigh')}
-                className="mt-4 w-full py-2 px-3 rounded-lg border border-green-500/20 bg-green-500/10 hover:bg-green-500/20 text-green-600 dark:text-green-400 text-sm font-medium transition-all"
-              >
-                {expandedSections.seniorHigh ? 'Show Less' : `Show ${accolades.seniorHigh.awards.length + accolades.seniorHigh.affiliations.length + accolades.seniorHigh.roles.length} More`}
-              </button>
             </div>
 
-            {/* Junior High */}
-            <div className="p-6 rounded-2xl border border-orange-500/20 bg-orange-500/5">
-              <h3 className="text-lg font-bold mb-2 text-orange-600 dark:text-orange-400 flex items-center gap-2">
+            <div className="p-8 rounded-[32px] border border-emerald-500/20 bg-emerald-500/5">
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
+                <div className="w-2.5 h-2.5 bg-emerald-500 rounded-full" />
+                Affiliations
+              </h3>
+              <div className="space-y-4">
+                {accolades.college.affiliations.slice(0, 5).map((a, i) => (
+                  <div key={i} className="p-4 rounded-2xl bg-white/5 border border-white/5 text-xs font-semibold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">{a}</div>
+                ))}
+              </div>
+            </div>
+
+            <div className="p-8 rounded-[32px] border border-orange-500/20 bg-orange-500/5">
+              <h3 className="text-xl font-bold mb-6 flex items-center gap-3">
                 <div className="w-2.5 h-2.5 bg-orange-500 rounded-full" />
-                Junior High School
+                Prior Honors
               </h3>
-              <div className="space-y-4 mt-4">
-                <div>
-                  <h4 className="text-xs font-semibold mb-2 text-orange-600/90 dark:text-orange-400/90">Honors</h4>
-                  <div className="space-y-2">
-                    {accolades.juniorHigh.honors.map((item, i) => (
-                      <div key={i} className="p-3 rounded-lg bg-white/5 dark:bg-white/[0.03] text-sm leading-relaxed">{item}</div>
-                    ))}
-                  </div>
+              <div className="space-y-4">
+                <div className="p-5 rounded-2xl bg-white/5 border border-white/5">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3">Senior High School</p>
+                  <p className="text-sm font-bold">With Highest Honors</p>
+                  <p className="text-xs text-muted-foreground mt-1">Principal&apos;s Distinction Award</p>
                 </div>
-                {expandedSections.juniorHigh && (
-                  <>
-                    <div>
-                      <h4 className="text-xs font-semibold mb-2 text-orange-600/90 dark:text-orange-400/90">Awards</h4>
-                      <div className="space-y-2">
-                        {accolades.juniorHigh.awards.map((item, i) => (
-                          <div key={i} className="p-3 rounded-lg bg-white/5 dark:bg-white/[0.03] text-sm leading-relaxed">{item}</div>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="text-xs font-semibold mb-2 text-orange-600/90 dark:text-orange-400/90">Affiliations & Roles</h4>
-                      <div className="space-y-2">
-                        {accolades.juniorHigh.roles.map((item, i) => (
-                          <div key={i} className="p-3 rounded-lg bg-white/5 dark:bg-white/[0.03] text-sm leading-relaxed">{item}</div>
-                        ))}
-                      </div>
-                    </div>
-                  </>
-                )}
-              </div>
-              <button
-                onClick={() => toggleSection('juniorHigh')}
-                className="mt-4 w-full py-2 px-3 rounded-lg border border-orange-500/20 bg-orange-500/10 hover:bg-orange-500/20 text-orange-600 dark:text-orange-400 text-sm font-medium transition-all"
-              >
-                {expandedSections.juniorHigh ? 'Show Less' : `Show ${accolades.juniorHigh.awards.length + accolades.juniorHigh.roles.length} More`}
-              </button>
-            </div>
-
-            {/* Elementary */}
-            <div className="p-6 rounded-2xl border border-pink-500/20 bg-pink-500/5">
-              <h3 className="text-lg font-bold mb-2 text-pink-600 dark:text-pink-400 flex items-center gap-2">
-                <div className="w-2.5 h-2.5 bg-pink-500 rounded-full" />
-                Elementary
-              </h3>
-              <div className="space-y-4 mt-4">
-                <div>
-                  <h4 className="text-xs font-semibold mb-2 text-pink-600/90 dark:text-pink-400/90">Honors</h4>
-                  <div className="space-y-2">
-                    {accolades.elementary.honors.map((item, i) => (
-                      <div key={i} className="p-3 rounded-lg bg-white/5 dark:bg-white/[0.03] text-sm leading-relaxed">{item}</div>
-                    ))}
-                  </div>
+                <div className="p-5 rounded-2xl bg-white/5 border border-white/5">
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground mb-3">Junior High School</p>
+                  <p className="text-sm font-bold">First Honors (Rank 1)</p>
+                  <p className="text-xs text-muted-foreground mt-1">10+ Academic Awards</p>
                 </div>
-                {expandedSections.elementary && (
-                  <>
-                    <div>
-                      <h4 className="text-xs font-semibold mb-2 text-pink-600/90 dark:text-pink-400/90">Awards</h4>
-                      <div className="space-y-2">
-                        {accolades.elementary.awards.map((item, i) => (
-                          <div key={i} className="p-3 rounded-lg bg-white/5 dark:bg-white/[0.03] text-sm leading-relaxed">{item}</div>
-                        ))}
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="text-xs font-semibold mb-2 text-pink-600/90 dark:text-pink-400/90">Affiliations & Roles</h4>
-                      <div className="space-y-2">
-                        {accolades.elementary.roles.map((item, i) => (
-                          <div key={i} className="p-3 rounded-lg bg-white/5 dark:bg-white/[0.03] text-sm leading-relaxed">{item}</div>
-                        ))}
-                      </div>
-                    </div>
-                  </>
-                )}
               </div>
-              <button
-                onClick={() => toggleSection('elementary')}
-                className="mt-4 w-full py-2 px-3 rounded-lg border border-pink-500/20 bg-pink-500/10 hover:bg-pink-500/20 text-pink-600 dark:text-pink-400 text-sm font-medium transition-all"
-              >
-                {expandedSections.elementary ? 'Show Less' : `Show ${accolades.elementary.awards.length + accolades.elementary.roles.length} More`}
-              </button>
             </div>
           </div>
         </div>
       </section>
+
+      <AchievementArchiveModal isOpen={showArchive} onClose={() => setShowArchive(false)} />
 
       {/* Marquee: AWARDS • ACHIEVEMENTS • WINS • AFFILIATIONS */}
       <div className="marquee-fade-edges overflow-hidden border-y border-zinc-300 dark:border-white/10 bg-white/[0.02] py-4">

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Quote } from "lucide-react";
 
 import { useCopyMode } from "@/components/copy-mode-provider";
@@ -32,18 +32,18 @@ export function QuoteSection() {
 
   return (
     <section className="relative w-full flex items-center justify-center bg-gradient-to-b from-background via-blue-600/5 dark:via-blue-400/5 to-background overflow-x-hidden py-8 sm:py-12 md:py-16">
-      <motion.div
+      <m.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={containerVariants}
         className="relative z-20 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8"
       >
-        <motion.div variants={itemVariants} className="text-center mb-8">
+        <m.div variants={itemVariants} className="text-center mb-8">
           <Quote className="h-12 w-12 text-blue-600 dark:text-blue-300 mx-auto mb-6 opacity-80" />
-        </motion.div>
+        </m.div>
 
-        <motion.blockquote
+        <m.blockquote
           variants={itemVariants}
           className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light leading-tight text-foreground mb-8 px-2"
         >
@@ -61,9 +61,9 @@ export function QuoteSection() {
               <span className="text-blue-600 dark:text-blue-300 font-semibold">human experience</span>.
             </>
           )}
-        </motion.blockquote>
+        </m.blockquote>
 
-        <motion.div
+        <m.div
           variants={itemVariants}
           className="flex flex-col items-center gap-4 mt-12"
         >
@@ -77,10 +77,10 @@ export function QuoteSection() {
           <p className="text-xs text-muted-foreground/75">
             {copyMode === "plain" ? "Helping Businesses Worldwide" : "Google Developer Programs"}
           </p>
-        </motion.div>
+        </m.div>
 
         {/* Achievement badges */}
-        <motion.div
+        <m.div
           variants={itemVariants}
           className="flex flex-wrap justify-center gap-3 mt-12 scale-90"
         >
@@ -121,8 +121,8 @@ export function QuoteSection() {
               </div>
             </>
           )}
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </section>
   );
 }

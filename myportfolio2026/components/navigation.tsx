@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Menu, X, Home, Briefcase, User, Mail } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
@@ -50,7 +50,7 @@ export function Navigation() {
           const sections = navItems
             .filter(item => item.href.includes("#"))
             .map((item) => item.href.split("#")[1]);
-          
+
           const scrollPosition = window.scrollY + 200;
 
           for (let i = sections.length - 1; i >= 0; i--) {
@@ -60,7 +60,7 @@ export function Navigation() {
               break;
             }
           }
-          
+
           ticking = false;
         });
         ticking = true;
@@ -75,12 +75,12 @@ export function Navigation() {
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     const [path, hash] = href.split("#");
-    
+
     // If it's an anchor and we're on the target path (or we're on home and target is home)
     if (hash && (pathname === path || (path === "/" && pathname === "/"))) {
       e.preventDefault();
       const element = document.getElementById(hash);
-      
+
       if (element) {
         const headerOffset = 80;
         const elementPosition = element.getBoundingClientRect().top;
@@ -102,7 +102,7 @@ export function Navigation() {
 
   return (
     <>
-      <motion.nav
+      <m.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
@@ -131,12 +131,12 @@ export function Navigation() {
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const hrefHash = item.href.split("#")[1];
-                
+
                 // Active if pathname matches exactly OR if it's an anchor on home and we're on home
-                const isActive = 
+                const isActive =
                   (item.href === "/projects" && (pathname === "/projects" || pathname.startsWith("/projects/"))) ||
                   (hrefHash === activeSection);
-                
+
                 return (
                   <Link
                     key={item.name}
@@ -150,7 +150,7 @@ export function Navigation() {
                     )}
                   >
                     {isActive && (
-                      <motion.div
+                      <m.div
                         layoutId="activeSection"
                         className="absolute inset-0 bg-blue-500/10 rounded-lg"
                         transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
@@ -185,12 +185,12 @@ export function Navigation() {
             </div>
           </div>
         </div>
-      </motion.nav>
+      </m.nav>
 
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -201,10 +201,10 @@ export function Navigation() {
               {navItems.map((item) => {
                 const Icon = item.icon;
                 const hrefHash = item.href.split("#")[1];
-                const isActive = 
+                const isActive =
                   (item.href === "/projects" && (pathname === "/projects" || pathname.startsWith("/projects/"))) ||
                   (hrefHash === activeSection);
-                
+
                 return (
                   <Link
                     key={item.name}
@@ -223,7 +223,7 @@ export function Navigation() {
                 );
               })}
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

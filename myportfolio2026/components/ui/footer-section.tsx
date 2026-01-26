@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import type { ComponentProps, ReactNode } from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import { m, useReducedMotion } from 'framer-motion';
 import { Facebook, Instagram, Linkedin, Mail, Globe, Phone, ArrowUpRight, MessageCircle, Send } from 'lucide-react';
 import Link from 'next/link';
 import { useFullPageLoading } from '@/components/full-page-loading-context';
@@ -25,7 +25,7 @@ const footerLinks: FooterSection[] = [
 			{ title: 'Home', href: '/#home' },
 			{ title: 'Projects', href: '/projects' },
 			{ title: 'About', href: '/about' },
-			{ title: 'Contact', href: '/#contact' },
+			{ title: 'Contact', href: '/contact' },
 		],
 	},
 	{
@@ -136,7 +136,7 @@ export function Footer() {
 						<div className="flex items-center gap-4">
 							<Link href="/about" className="hover:text-foreground transition-colors" suppressHydrationWarning>About</Link>
 							<Link href="/credits" className="hover:text-foreground transition-colors" suppressHydrationWarning>Credits</Link>
-							<Link href="/#contact" className="hover:text-foreground transition-colors" suppressHydrationWarning>Contact</Link>
+							<Link href="/contact" className="hover:text-foreground transition-colors" suppressHydrationWarning>Contact</Link>
 						</div>
 					</div>
 				</AnimatedContainer>
@@ -147,7 +147,7 @@ export function Footer() {
 
 type ViewAnimationProps = {
 	delay?: number;
-	className?: ComponentProps<typeof motion.div>['className'];
+	className?: string;
 	children: ReactNode;
 };
 
@@ -159,7 +159,7 @@ function AnimatedContainer({ className, delay = 0.1, children }: ViewAnimationPr
 	}
 
 	return (
-		<motion.div
+		<m.div
 			initial={{ filter: 'blur(4px)', translateY: -8, opacity: 0 }}
 			whileInView={{ filter: 'blur(0px)', translateY: 0, opacity: 1 }}
 			viewport={{ once: true }}
@@ -167,7 +167,7 @@ function AnimatedContainer({ className, delay = 0.1, children }: ViewAnimationPr
 			className={className}
 		>
 			{children}
-		</motion.div>
+		</m.div>
 	);
 }
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { MeshGradient, Dithering } from "@paper-design/shaders-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 interface PixelHeaderProps {
   colors?: string[];
@@ -48,7 +48,7 @@ export function PixelHeader({
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60" />
 
       <div className={`relative container mx-auto px-4 sm:px-6 py-8 sm:py-10 md:py-12 text-left h-full flex flex-col justify-end ${maxWidth}`}>
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
@@ -69,7 +69,7 @@ export function PixelHeader({
               {subtitle}
             </p>
           )}
-        </motion.div>
+        </m.div>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import { useFullPageLoading } from "@/components/full-page-loading-context";
@@ -54,7 +54,7 @@ export const FloatingConsultButton = ({
     <>
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -66,7 +66,7 @@ export const FloatingConsultButton = ({
 
       <AnimatePresence>
         {isOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -100,7 +100,7 @@ export const FloatingConsultButton = ({
                 {ctaButtonText}
               </Button>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
@@ -108,7 +108,7 @@ export const FloatingConsultButton = ({
         className="fixed z-[100]"
         style={position}
       >
-        <motion.div
+        <m.div
           className="relative cursor-pointer group"
           style={{
             width: `${smButtonSize}px`,
@@ -118,7 +118,7 @@ export const FloatingConsultButton = ({
           transition={{ duration: 0.3 }}
           onClick={() => setIsOpen(!isOpen)}
         >
-          <motion.div
+          <m.div
             className="absolute inset-0"
             animate={{ rotate: 360 }}
             transition={{
@@ -143,7 +143,7 @@ export const FloatingConsultButton = ({
                 </textPath>
               </text>
             </svg>
-          </motion.div>
+          </m.div>
 
           <div className="absolute inset-0 flex items-center justify-center">
             <div
@@ -167,7 +167,7 @@ export const FloatingConsultButton = ({
               />
             </div>
           </div>
-        </motion.div>
+        </m.div>
 
         <style>{`
           @media (min-width: 1024px) {

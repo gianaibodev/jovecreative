@@ -2,7 +2,7 @@
 
 import { ArrowRight } from "lucide-react"
 import Link from "next/link"
-import { motion } from "framer-motion"
+import { m } from "framer-motion"
 import { useState } from "react"
 import Image from "next/image"
 import { cn } from "@/lib/utils"
@@ -135,7 +135,7 @@ export function PortfolioGallery({
               const yOffset = isHovered ? -120 : isOtherHovered ? 0 : -staggerOffset
 
               return (
-                <motion.div
+                <m.div
                   key={index}
                   className="group cursor-pointer flex-shrink-0"
                   style={{
@@ -183,7 +183,7 @@ export function PortfolioGallery({
                       <p className="text-white font-medium text-sm">{image.alt}</p>
                     </div>
                   </div>
-                </motion.div>
+                </m.div>
               )
             })}
           </div>

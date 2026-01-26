@@ -11,8 +11,8 @@ export default function Loading() {
   const [isHeld, setIsHeld] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const startTimeRef = useRef<number>(Date.now());
-  const minDelay = 5000; // 5 seconds
-  const maxDelay = 6000; // 6 seconds
+  const minDelay = 12000; // 12 seconds
+  const maxDelay = 15000; // 15 seconds
   const delay = useRef(Math.random() * (maxDelay - minDelay) + minDelay);
   const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const touchStartTimeRef = useRef<number>(0);
@@ -27,8 +27,8 @@ export default function Loading() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const PROJECTS_INTRO_KEY = "projectsIntroShown_v1";
-    const hasSeen = sessionStorage.getItem(PROJECTS_INTRO_KEY);
+    const SITE_INTRO_KEY = "siteIntroShown_v1";
+    const hasSeen = sessionStorage.getItem(SITE_INTRO_KEY);
 
     if (hasSeen) {
       setShowLoader(false);
@@ -45,6 +45,7 @@ export default function Loading() {
     // Handle skip (Escape, Enter, or click)
     const handleSkip = () => {
       setShowLoader(false);
+      sessionStorage.setItem(SITE_INTRO_KEY, "true");
       if (progressIntervalRef.current) {
         clearInterval(progressIntervalRef.current);
       }
@@ -131,6 +132,7 @@ export default function Loading() {
 
         if (newProgress >= 100) {
           setShowLoader(false);
+          sessionStorage.setItem(SITE_INTRO_KEY, "true");
         }
       }
     };
@@ -143,6 +145,7 @@ export default function Loading() {
     const timer = setTimeout(() => {
       if (!isHeld) {
         setShowLoader(false);
+        sessionStorage.setItem(SITE_INTRO_KEY, "true");
       }
     }, delay.current);
 

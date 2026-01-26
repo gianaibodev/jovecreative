@@ -18,7 +18,7 @@ import {
 import Link from 'next/link';
 import { ThemeToggle } from '@/components/theme-toggle';
 import { useCopyMode } from '@/components/copy-mode-provider';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 
 // Types
 interface MenuItemOption {
@@ -275,7 +275,7 @@ const MacOSMenuBar: React.FC<MacOSMenuBarProps> = ({
         { label: 'Projects', action: 'nav-projects', href: '/projects' },
         { label: 'Blog', action: 'nav-blog', href: '/blog' },
         { label: 'About', action: 'nav-about', href: '/about' },
-        { label: 'Contact', action: 'nav-contact', href: '/#contact' },
+        { label: 'Contact', action: 'nav-contact', href: '/contact' },
         { type: 'separator' },
         { label: 'GitHub Profile', action: 'github', shortcut: '⇧⌘G' },
         { label: 'LinkedIn', action: 'linkedin', shortcut: '⇧⌘L' },
@@ -289,7 +289,7 @@ const MacOSMenuBar: React.FC<MacOSMenuBarProps> = ({
     { label: "Projects", href: "/projects", emoji: "📁", color: "rgba(10, 132, 255, 0.9)" },
     { label: "Blog", href: "/blog", emoji: "🎬", color: "rgba(191, 90, 242, 0.9)" },
     { label: "About", href: "/about", emoji: "👤", color: "rgba(94, 92, 230, 0.9)" },
-    { label: "Contact", href: "/#contact", emoji: "✉️", color: "rgba(48, 209, 88, 0.9)" },
+    { label: "Contact", href: "/contact", emoji: "✉️", color: "rgba(48, 209, 88, 0.9)" },
   ];
 
   const displayMenus = menus || defaultMenus;
@@ -458,7 +458,7 @@ const MacOSMenuBar: React.FC<MacOSMenuBarProps> = ({
               <Link href="/projects" className="px-2.5 py-1 text-foreground dark:text-white text-[13px] font-medium hover:bg-black/5 dark:hover:bg-white/10 rounded-lg transition-all border border-transparent hover:border-zinc-300 dark:hover:border-white/10" suppressHydrationWarning>Projects</Link>
               <Link href="/blog" className="px-2.5 py-1 text-foreground dark:text-white text-[13px] font-medium hover:bg-black/5 dark:hover:bg-white/10 rounded-lg transition-all border border-transparent hover:border-zinc-300 dark:hover:border-white/10" suppressHydrationWarning>Blog</Link>
               <Link href="/about" className="px-2.5 py-1 text-foreground dark:text-white text-[13px] font-medium hover:bg-black/5 dark:hover:bg-white/10 rounded-lg transition-all border border-transparent hover:border-zinc-300 dark:hover:border-white/10" suppressHydrationWarning>About</Link>
-              <Link href="/#contact" className="px-2.5 py-1 text-foreground dark:text-white text-[13px] font-medium hover:bg-black/5 dark:hover:bg-white/10 rounded-lg transition-all border border-transparent hover:border-zinc-300 dark:hover:border-white/10" suppressHydrationWarning>Contact</Link>
+              <Link href="/contact" className="px-2.5 py-1 text-foreground dark:text-white text-[13px] font-medium hover:bg-black/5 dark:hover:bg-white/10 rounded-lg transition-all border border-transparent hover:border-zinc-300 dark:hover:border-white/10" suppressHydrationWarning>Contact</Link>
             </div>
 
             <div className="flex items-center space-x-1">
@@ -495,7 +495,7 @@ const MacOSMenuBar: React.FC<MacOSMenuBarProps> = ({
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -506,7 +506,7 @@ const MacOSMenuBar: React.FC<MacOSMenuBarProps> = ({
             <div className="absolute inset-0 m-3 backdrop-blur-3xl saturate-[180%] bg-white/75 dark:bg-[#1c1c1e]/80 border border-zinc-400 dark:border-white/10 rounded-[24px] shadow-2xl" />
 
             {/* Content layer - animates in */}
-            <motion.div
+            <m.div
               initial={{ scale: 0.96, y: -6 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.96, y: -6 }}
@@ -546,8 +546,8 @@ const MacOSMenuBar: React.FC<MacOSMenuBarProps> = ({
                 </div>
                 <span className="text-foreground/90 dark:text-white/90 text-[13px] font-medium tracking-tight tabular-nums">{currentTime}</span>
               </div>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
         )}
       </AnimatePresence>
 

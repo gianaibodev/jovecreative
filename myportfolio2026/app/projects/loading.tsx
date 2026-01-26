@@ -11,8 +11,8 @@ export default function Loading() {
   const [isHeld, setIsHeld] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const startTimeRef = useRef<number>(Date.now());
-  const minDelay = 5000; // 5 seconds
-  const maxDelay = 6000; // 6 seconds
+  const minDelay = 12000; // 12 seconds
+  const maxDelay = 15000; // 15 seconds
   const delay = useRef(Math.random() * (maxDelay - minDelay) + minDelay);
   const progressIntervalRef = useRef<NodeJS.Timeout | null>(null);
   const touchStartTimeRef = useRef<number>(0);
@@ -27,14 +27,14 @@ export default function Loading() {
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const PROJECTS_INTRO_KEY = "projectsIntroShown_v1";
-    const hasSeen = sessionStorage.getItem(PROJECTS_INTRO_KEY);
+    const SITE_INTRO_KEY = "siteIntroShown_v1";
+    const hasSeen = sessionStorage.getItem(SITE_INTRO_KEY);
 
     if (hasSeen) {
       setShowLoader(false);
       return;
     }
-    
+
     // Detect mobile
     const checkMobile = () => {
       setIsMobile(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || window.innerWidth < 768);
@@ -45,6 +45,7 @@ export default function Loading() {
     // Handle skip (Escape, Enter, or click)
     const handleSkip = () => {
       setShowLoader(false);
+      sessionStorage.setItem(SITE_INTRO_KEY, "true");
       if (progressIntervalRef.current) {
         clearInterval(progressIntervalRef.current);
       }
@@ -131,6 +132,7 @@ export default function Loading() {
 
         if (newProgress >= 100) {
           setShowLoader(false);
+          sessionStorage.setItem(SITE_INTRO_KEY, "true");
         }
       }
     };
@@ -143,6 +145,7 @@ export default function Loading() {
     const timer = setTimeout(() => {
       if (!isHeld) {
         setShowLoader(false);
+        sessionStorage.setItem(SITE_INTRO_KEY, "true");
       }
     }, delay.current);
 
@@ -181,7 +184,7 @@ export default function Loading() {
     >
       <ParticleText hideInteractionHint />
       {/* Progress Bar - Always visible with higher z-index */}
-      <div 
+      <div
         className="fixed bottom-0 left-0 right-0 z-[99999] h-2 bg-black/40 dark:bg-white/20"
         style={{ pointerEvents: 'none' }}
       >
@@ -198,19 +201,19 @@ export default function Loading() {
         {Math.round(progress)}%
       </div>
       {/* Skip Button - Glass effect matching header */}
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            if (progressIntervalRef.current) {
-              clearInterval(progressIntervalRef.current);
-              progressIntervalRef.current = null;
-            }
-            setShowLoader(false);
-          }}
-          className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[100000] px-8 py-3 rounded-full backdrop-blur-3xl bg-white/80 dark:bg-white/[0.03] border border-zinc-300 dark:border-white/[0.12] text-foreground dark:text-white text-sm font-bold shadow-2xl transition-all hover:bg-white/90 dark:hover:bg-white/[0.05] active:scale-95"
-        >
-          SKIP INTRO
-        </button>
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          if (progressIntervalRef.current) {
+            clearInterval(progressIntervalRef.current);
+            progressIntervalRef.current = null;
+          }
+          setShowLoader(false);
+        }}
+        className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[100000] px-8 py-3 rounded-full backdrop-blur-3xl bg-white/80 dark:bg-white/[0.03] border border-zinc-300 dark:border-white/[0.12] text-foreground dark:text-white text-sm font-bold shadow-2xl transition-all hover:bg-white/90 dark:hover:bg-white/[0.05] active:scale-95"
+      >
+        SKIP INTRO
+      </button>
 
       {/* Skip hint */}
       <div
