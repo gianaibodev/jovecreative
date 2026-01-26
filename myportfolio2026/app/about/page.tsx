@@ -228,163 +228,85 @@ function GradesModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
     return "text-yellow-400 bg-yellow-500/20";
   };
 
-  // Stats
   const perfectGrades = collegeGrades.filter((g) => g.grade === 1.0).length;
   const avgGrade = (collegeGrades.reduce((sum, g) => sum + g.grade, 0) / collegeGrades.length).toFixed(2);
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <>
-          {/* Backdrop */}
+        <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/70 backdrop-blur-sm z-50"
+            className="absolute inset-0 bg-black/90 backdrop-blur-xl"
           />
-          
-          {/* Modal */}
+
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            initial={{ opacity: 0, scale: 0.9, y: 40 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="fixed inset-2 sm:inset-4 md:top-8 md:left-[10%] md:right-[10%] md:bottom-8 lg:top-12 lg:left-[15%] lg:right-[15%] lg:bottom-12 max-h-[96dvh] sm:max-h-[88vh] min-w-0 bg-zinc-900 border border-zinc-300 dark:border-white/10 rounded-xl sm:rounded-2xl z-50 overflow-hidden flex flex-col shadow-2xl"
+            exit={{ opacity: 0, scale: 0.9, y: 40 }}
+            transition={{ type: "spring", damping: 30, stiffness: 200 }}
+            className="relative w-full max-w-5xl h-[85vh] md:h-[80vh] bg-zinc-950 border border-white/10 rounded-3xl overflow-hidden flex flex-col shadow-[0_0_100px_-20px_rgba(0,0,0,1)]"
           >
-            {/* Compact Header with Search */}
-            <div className="flex-shrink-0 p-2.5 sm:p-4 border-b border-zinc-300 dark:border-white/10 bg-zinc-900/80">
-              <div className="flex items-center justify-between gap-3 mb-3">
-                <div className="flex items-center gap-2 min-w-0">
-                  <div className="w-8 h-8 rounded-lg bg-blue-500/20 flex items-center justify-center flex-shrink-0">
-                    <FileText className="w-4 h-4 text-blue-400" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h2 className="text-base sm:text-lg font-bold truncate">College Transcript</h2>
-                    <p className="text-[10px] sm:text-xs text-muted-foreground line-clamp-2">Bachelor of Science in Computer Science • University of St. La Salle • 2021-2025</p>
-                  </div>
+            {/* Header */}
+            <div className="flex-shrink-0 p-6 sm:p-8 border-b border-white/5 bg-zinc-900/40">
+              <div className="flex items-start justify-between gap-6 mb-6">
+                <div>
+                  <h2 className="text-2xl sm:text-3xl font-black truncate tracking-tighter text-white">Full Academic History</h2>
+                  <p className="text-sm text-zinc-500 mt-1">B.S. Computer Science · University of St. La Salle · Class of 2025</p>
                 </div>
                 <button
                   onClick={onClose}
-                  className="w-10 h-10 sm:w-8 sm:h-8 rounded-lg bg-white/5 hover:bg-white/10 active:bg-white/15 flex items-center justify-center transition-colors flex-shrink-0 touch-manipulation"
-                  aria-label="Close modal"
+                  className="w-12 h-12 rounded-full bg-white/5 hover:bg-white/10 flex items-center justify-center transition-all flex-shrink-0 group"
                 >
-                  <X className="w-4 h-4" />
+                  <X className="w-6 h-6 group-hover:scale-110 transition-transform" />
                 </button>
               </div>
-              
-              {/* Search Bar */}
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <input
-                  type="text"
-                  placeholder="Search subjects..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full pl-9 pr-9 py-2.5 sm:py-2 rounded-lg bg-white/5 border border-zinc-300 dark:border-white/10 focus:border-blue-500/50 focus:outline-none text-sm touch-manipulation"
-                />
-                {searchQuery && (
-                  <button
-                    onClick={() => setSearchQuery("")}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded hover:bg-white/10"
-                  >
-                    <X className="w-3 h-3" />
-                  </button>
-                )}
+
+              <div className="flex flex-col md:flex-row gap-4">
+                <div className="relative flex-1">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-500" />
+                  <input
+                    type="text"
+                    placeholder="Search curriculum..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="w-full pl-12 pr-4 py-3 rounded-2xl bg-white/5 border border-white/10 focus:border-blue-500/50 focus:outline-none text-sm transition-all"
+                  />
+                </div>
+                <div className="flex gap-2">
+                  <div className="px-4 py-3 rounded-2xl bg-blue-500/10 border border-blue-500/20 text-xs font-bold text-blue-400 flex items-center gap-2">
+                    GWA {avgGrade}
+                  </div>
+                  <div className="px-4 py-3 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 text-xs font-bold text-emerald-400 flex items-center gap-2">
+                    {perfectGrades} Perfect Marks
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* Compact Stats + Legend Toggle */}
-            <div className="flex-shrink-0 px-3 sm:px-4 py-2 border-b border-zinc-300 dark:border-white/10 bg-zinc-800/50">
-              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
-                <div className="flex items-center gap-2 sm:gap-6 min-w-0">
-                  <div className="text-center min-w-0">
-                    <span className="text-base sm:text-xl font-bold text-blue-400">{avgGrade}</span>
-                    <span className="text-[10px] text-muted-foreground ml-1">GWA</span>
-                  </div>
-                  <div className="text-center min-w-0">
-                    <span className="text-base sm:text-xl font-bold text-emerald-400">{perfectGrades}</span>
-                    <span className="text-[10px] text-muted-foreground ml-1">Perfect</span>
-                  </div>
-                  <div className="text-center min-w-0">
-                    <span className="text-base sm:text-xl font-bold text-zinc-400">{collegeGrades.length}</span>
-                    <span className="text-[10px] text-muted-foreground ml-1">Total</span>
-                  </div>
-                </div>
-                <button
-                  onClick={() => setShowLegend(!showLegend)}
-                  className={`ml-auto flex-shrink-0 text-[10px] sm:text-xs px-2.5 py-1.5 rounded-md transition-colors touch-manipulation ${showLegend ? 'bg-blue-500/20 text-blue-400' : 'bg-white/5 text-muted-foreground hover:bg-white/10'}`}
-                >
-                  {showLegend ? 'Hide' : 'Legend'}
-                </button>
-              </div>
-              
-              {/* Collapsible Legend */}
-              <AnimatePresence>
-                {showLegend && (
-                  <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="overflow-hidden"
-                  >
-                    <div className="pt-3 mt-2 border-t border-zinc-300 dark:border-white/5">
-                      <div className="flex flex-wrap gap-x-4 gap-y-1 text-[10px] sm:text-xs">
-                        <span><span className="inline-block w-2 h-2 rounded-full bg-emerald-500 mr-1"></span>1.0 = 100%</span>
-                        <span><span className="inline-block w-2 h-2 rounded-full bg-green-500 mr-1"></span>1.1-1.5 = 95-99%</span>
-                        <span><span className="inline-block w-2 h-2 rounded-full bg-blue-500 mr-1"></span>1.6-2.0 = 88-94%</span>
-                        <span><span className="inline-block w-2 h-2 rounded-full bg-yellow-500 mr-1"></span>2.1+ = 85-87%</span>
-                      </div>
-                      <p className="text-[10px] text-muted-foreground/70 mt-1">Philippine grading: 1.0 is highest (A+), lower GWA = better</p>
-                    </div>
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* Grades List - Scrollable: Spotlight first, then All by term */}
-            <div className="flex-1 overflow-y-auto min-h-0 overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' } as React.CSSProperties}>
-              {/* Spotlight: highest grades in hardest subjects */}
-              <div className="flex-shrink-0 pb-4">
-                <h3 className="px-3 sm:px-4 pt-2 pb-2 text-xs sm:text-sm font-semibold text-emerald-400 flex items-center gap-2">
-                  <Sparkles className="w-3.5 h-3.5 flex-shrink-0" />
-                  Highest grades in hardest subjects
-                </h3>
-                <div className="divide-y divide-zinc-300 dark:divide-white/5 rounded-lg bg-white/[0.02] mx-3 sm:mx-4 border border-zinc-300 dark:border-white/5">
-                  {getSpotlightGrades().map((g) => (
-                    <div key={g.subject} className="flex flex-col gap-0.5 sm:flex-row sm:items-center sm:gap-2 py-2.5 sm:py-2 px-3 sm:px-4">
-                      <span className="flex-1 text-sm font-medium min-w-0 leading-tight break-words">{g.subject}</span>
-                      <span className="flex items-center gap-1.5 flex-shrink-0 mt-0.5 sm:mt-0">
-                        <span className={`text-xs font-bold px-2 py-1 rounded ${getGradeColor(g.grade)}`}>{g.grade.toFixed(1)}</span>
-                        <span className="text-xs text-muted-foreground">{g.equivalent}</span>
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* All subjects by term */}
-              <div className="flex-shrink-0 pt-2 pb-1">
-                <h3 className="px-3 sm:px-4 text-[10px] sm:text-xs uppercase tracking-wider text-muted-foreground">All subjects by term</h3>
-              </div>
+            {/* List */}
+            <div className="flex-1 overflow-y-auto px-6 sm:px-8 py-8 space-y-10 custom-scrollbar">
               {Object.entries(groupedGrades).map(([term, grades]) => (
-                <div key={term}>
-                  <div className="sticky top-0 z-10 px-3 sm:px-4 py-2 bg-zinc-800/95 backdrop-blur-sm border-b border-zinc-300 dark:border-white/5">
-                    <span className="text-xs font-medium text-blue-400">{term}</span>
-                    <span className="text-[10px] text-muted-foreground ml-2">({grades.length})</span>
+                <div key={term} className="space-y-4">
+                  <div className="flex items-center gap-4">
+                    <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-600">{term}</span>
+                    <div className="h-px flex-1 bg-white/5" />
                   </div>
-                  <div className="divide-y divide-zinc-300 dark:divide-white/5">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                     {grades.map((grade, idx) => (
                       <div
                         key={`${term}-${idx}`}
-                        className="flex flex-col gap-0.5 sm:flex-row sm:items-center sm:gap-2 px-3 sm:px-4 py-2.5 sm:py-2 hover:bg-white/[0.03] transition-colors"
+                        className="flex items-center justify-between p-4 rounded-2xl bg-white/[0.02] border border-white/[0.02] hover:bg-white/[0.04] hover:border-white/5 transition-all group"
                       >
-                        <span className="flex-1 text-sm font-medium min-w-0 leading-tight break-words">{grade.subject}</span>
-                        <span className="flex items-center gap-1.5 flex-shrink-0 mt-0.5 sm:mt-0">
-                          <span className={`text-xs font-bold px-2 py-1 rounded ${getGradeColor(grade.grade)}`}>{grade.grade.toFixed(1)}</span>
-                          <span className="text-xs text-muted-foreground">{grade.equivalent}</span>
+                        <div className="min-w-0 pr-4">
+                          <span className="text-sm font-semibold text-zinc-300 group-hover:text-white transition-colors line-clamp-1">{grade.subject}</span>
+                          <span className="text-[10px] text-zinc-600 block mt-0.5">{grade.equivalent} Equivalent</span>
+                        </div>
+                        <span className={`text-xs font-black min-w-[40px] text-center px-2 py-1.5 rounded-xl ${getGradeColor(grade.grade)}`}>
+                          {grade.grade.toFixed(1)}
                         </span>
                       </div>
                     ))}
@@ -393,21 +315,21 @@ function GradesModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void
               ))}
 
               {filteredGrades.length === 0 && (
-                <div className="text-center py-8 px-4">
-                  <Search className="w-6 h-6 text-muted-foreground/30 mx-auto mb-2" />
-                  <p className="text-sm text-muted-foreground">No subjects found</p>
+                <div className="py-24 text-center opacity-40">
+                  <p className="text-sm font-medium">No records found for &quot;{searchQuery}&quot;</p>
                 </div>
               )}
             </div>
 
-            {/* Compact Footer */}
-            <div className="flex-shrink-0 px-3 sm:px-4 py-2 border-t border-zinc-300 dark:border-white/10 bg-zinc-800/50">
-              <p className="text-[10px] text-center text-muted-foreground">
-                University of St. La Salle • Official Academic Records
-              </p>
+            {/* Footer */}
+            <div className="flex-shrink-0 px-8 py-5 border-t border-white/5 bg-zinc-900/60 backdrop-blur-xl">
+              <div className="flex items-center justify-between text-[11px] font-medium text-zinc-600">
+                <span>PH Grading System: 1.0 (Highest) to 5.0 (Lowest)</span>
+                <span className="hidden sm:block">USLS Bacolod · College of Engineering & Technology</span>
+              </div>
             </div>
           </motion.div>
-        </>
+        </div>
       )}
     </AnimatePresence>
   );
@@ -448,13 +370,13 @@ export default function AboutPage() {
       <MacOSMenuBar appName="About Gian Aibo" />
 
       <PixelHeader
-        title="Formal Education Graduation Showcase"
-        subtitle={copyMode === "plain" 
-          ? "I'm Gian Aibo C. Boyero — a Fresh Computer Science graduate passionate about design, technology, and innovation. Open to roles related to design and tech."
-          : "GIAN AIBO CHUA BOYERO — Fresh Computer Science graduate passionate about design, technology, and innovation. Open to roles related to design and tech."}
+        title="Digital Craft & Academic Excellence"
+        subtitle={copyMode === "plain"
+          ? "I'm Gian Aibo C. Boyero — a Computer Science graduate blending technical precision with high-end creative direction. Currently exploring the intersection of AI, design systems, and luxury interfaces."
+          : "GIAN AIBO CHUA BOYERO — Blending technical precision with high-end creative direction. Specializing in AI-driven interfaces and luxury digital experiences."}
         colors={["#3b82f6", "#10b981", "#f59e0b", "#ec4899"]}
         categoryIcon={<GraduationCap className="size-4" />}
-        categoryText="Class 2025"
+        categoryText="Portfolio 2025"
         maxWidth="max-w-7xl"
       />
 
@@ -599,7 +521,7 @@ export default function AboutPage() {
             <Trophy className="w-8 h-8 text-yellow-500" />
             Awards & Achievements
           </h2>
-          
+
           {/* College — Honors | Awards | Affiliations & Leadership */}
           <div className="p-6 rounded-2xl border border-blue-500/20 bg-blue-500/5 mb-12">
             <div className="flex items-center gap-2 mb-1">
