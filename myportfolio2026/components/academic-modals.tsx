@@ -99,7 +99,6 @@ export const accolades = {
             "4th Year, 2nd Semester - First Honors Deans' List",
         ],
         awards: [
-            "Outstanding Intern College Award – Seniors' Recognition Rites (2025)",
             "Google Developer Groups on Campus USLS - Legacy Builder Award (2025)",
             "Best in 3D Game – Game On USLS (2024) – Group Award",
             "Best in Mobile Game – Game On USLS (2024) – Group Award",

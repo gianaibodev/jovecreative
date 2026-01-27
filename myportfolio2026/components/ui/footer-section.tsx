@@ -63,6 +63,18 @@ export function Footer() {
 
 	return (
 		<footer className="relative w-full border-t border-zinc-200 dark:border-white/10 bg-zinc-50/50 dark:bg-zinc-900/50 backdrop-blur-xl">
+			{/* Disclaimer Marquee */}
+			<div className="w-full bg-blue-500/5 border-b border-blue-500/10 py-3 overflow-hidden">
+				<div className="animate-marquee flex w-max whitespace-nowrap" style={{ "--duration": "40s" } as React.CSSProperties}>
+					{Array.from({ length: 12 }).map((_, i) => (
+						<span key={i} className="mx-8 text-[10px] md:text-xs font-semibold text-blue-600 dark:text-blue-400 uppercase tracking-widest flex items-center gap-2">
+							<div className="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse" />
+							Note: This portfolio is currently being actively updated
+						</span>
+					))}
+				</div>
+			</div>
+
 			<div className="max-w-7xl mx-auto px-6 py-12 lg:py-16">
 				{/* Gradient line at top */}
 				<div className="absolute top-0 left-1/2 -translate-x-1/2 h-px w-1/3 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent" />

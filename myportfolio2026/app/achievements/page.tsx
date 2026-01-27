@@ -166,10 +166,6 @@ export default function AchievementsPage() {
 
                 <div className="mt-24 pt-24 border-t border-zinc-200 dark:border-white/5 text-center">
                     <p className="text-sm text-zinc-500 font-medium tracking-widest uppercase mb-8">End of Archive</p>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/50">
-                        <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                        <span className="text-xs font-semibold text-zinc-600 dark:text-zinc-400">Verified & Authentic Record</span>
-                    </div>
                 </div>
             </main>
         </div>
