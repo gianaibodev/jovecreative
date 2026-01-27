@@ -132,26 +132,23 @@
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
     -webkit-overflow-scrolling: touch;
-    /* Use min-height instead of height for better mobile viewport handling */
-    min-height: 100%;
-    /* Prevent iOS bounce scrolling issues */
-    position: relative;
-    /* Support dynamic viewport height on mobile */
-    height: -webkit-fill-available;
+    height: 100%;
+    /* removed: height: -webkit-fill-available; - often causes issues on desktop chrome */
   }
 
   body {
     @apply bg-background text-foreground;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: visible;
+    /* changed from auto to visible to prevent nested scroll containers */
     width: 100%;
     position: relative;
     min-height: 100vh;
-    min-height: -webkit-fill-available;
+    /* removed: min-height: -webkit-fill-available; */
     -webkit-overflow-scrolling: touch;
-    /* Prevent horizontal scroll, contain page bounce */
+    /* Prevent horizontal scroll */
     overscroll-behavior-x: none;
-    overscroll-behavior-y: contain;
+    /* removed: overscroll-behavior-y: contain; - which can lock scrolling in Chrome */
   }
 }
 
@@ -365,7 +362,7 @@ canvas.interactive {
 
   /* Hero content must also allow scroll pass-through except buttons */
   .hero-content,
-  .hero-content > *:not(button):not(a) {
+  .hero-content>*:not(button):not(a) {
     touch-action: pan-y !important;
   }
 
@@ -430,16 +427,13 @@ canvas.interactive {
 /* GPU Scroll Performance Optimizations */
 
 /* Reduce repaints on scrollable content with content containment */
-main,
 .scroll-container {
   contain: content;
 }
 
 /* Below-the-fold sections: lazy render */
-section:not(:first-of-type) {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 600px;
-}
+/* Below-the-fold sections: lazy render removed due to scroll issues */
+/* section:not(:first-of-type) rules removed */
 
 /* Backdrop elements: prevent layout thrash but avoid will-change abuse */
 [class*="backdrop-blur"] {
@@ -545,6 +539,7 @@ section:not(:first-of-type) {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }

@@ -27,7 +27,8 @@ const categoryColors: Record<CategoryColorKey, string> = {
 // Priority categories that should appear first (pinned/starred)
 const PINNED_CATEGORIES = [
   "Web Development",
-  "UI/UX",
+  "Internships",
+  "Community & Events",
   "Startups & Innovation",
   "Games & Experiments",
 ];
@@ -48,10 +49,10 @@ function FolderSkeleton() {
       >
         {/* Folder tab skeleton */}
         <div className="absolute -top-3 left-6 w-20 h-6 bg-muted/50 rounded-t-lg" />
-        
+
         {/* Folder body skeleton */}
         <div className="w-full h-40 bg-muted/30 rounded-xl mb-4" />
-        
+
         {/* Title skeleton */}
         <div className="w-32 h-5 bg-muted/40 rounded-md" />
       </div>
@@ -122,7 +123,7 @@ export function ProjectsSection() {
     return mapped.sort((a, b) => {
       const aIndex = PINNED_CATEGORIES.indexOf(a.title);
       const bIndex = PINNED_CATEGORIES.indexOf(b.title);
-      
+
       // Both pinned: sort by their order in PINNED_CATEGORIES
       if (aIndex !== -1 && bIndex !== -1) {
         return aIndex - bIndex;
@@ -139,7 +140,7 @@ export function ProjectsSection() {
   return (
     <section id="all-projects" className="w-full pb-12 sm:pb-16 md:pb-20 bg-background overflow-visible relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 justify-items-center">
           {loading ? (
             // Show skeleton placeholders while loading
             <>

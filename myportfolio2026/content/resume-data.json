@@ -1,0 +1,683 @@
+{
+    "projects": [
+        {
+            "title": "DEVCON Bacolod",
+            "subtitle": "Leading the Local Tech Community",
+            "roles": [
+                "Chapter Lead",
+                "Creative Director"
+            ],
+            "tools": [
+                "Figma",
+                "Adobe Photoshop",
+                "Community Building"
+            ],
+            "summary": "DEVCON Bacolod is a chapter of the Philippines' largest volunteer tech community. As Chapter Lead, I managed initiatives to promote collaborative growth for Filipino developers, providing platforms for learning, networking, and support.",
+            "metrics": [
+                "Largest volunteer tech community in the Philippines",
+                "Promoted collaborative growth for developers",
+                "Provided platforms for learning and networking"
+            ],
+            "year": 2024,
+            "category": "Community & Events",
+            "heroImage": "/framer/l0mt37sDsp0qpScslPzX7Q0U.avif",
+            "gallery": [
+                "/framer/l0mt37sDsp0qpScslPzX7Q0U.avif",
+                "/framer/7Cj2GmajQOCPjc9p2tNBXFW4J8.avif",
+                "/framer/9neiq36m9UOrgeUNGoVlB61oXc.avif",
+                "/framer/aBUlQN4FQCadBmUxw5fetfJIwyc.webp",
+                "/framer/GhoIcW9WDSSYWNXawPj4HR0eM.avif",
+                "/framer/szWrgqCRtUDLfDSGnW8vbkHW8FM.webp"
+            ]
+        },
+        {
+            "title": "Armada Brands — Internship",
+            "subtitle": "E-Commerce Growth & D2C Brand Scaling",
+            "roles": [
+                "E-Commerce Intern",
+                "Creative Support",
+                "Brand Strategy"
+            ],
+            "tools": [
+                "E-Commerce Platforms",
+                "Digital Marketing",
+                "Adobe Creative Suite"
+            ],
+            "summary": "Interned at Armada Brands, a Singapore-headquartered e-commerce company acquiring promising digital-first D2C brands in Southeast Asia. Assisted in scaling partner brands like Nuprene and Goodies Nutrition through strategic resource allocation and creative operational support.",
+            "metrics": [
+                "Supported scaling initiatives for D2C brands in SE Asia",
+                "Collaborated on brand strategy for Nuprene and Goodies Nutrition",
+                "Contributed to e-commerce operational workflows"
+            ],
+            "year": 2024,
+            "category": "Internships"
+        },
+        {
+            "title": "LA VIDA 2025 BRANDING",
+            "subtitle": "Event Promotion & Brand Identity for High-Energy Social Events",
+            "roles": [
+                "Brand Designer",
+                "Event Promoter",
+                "Creative Director"
+            ],
+            "tools": [
+                "Figma",
+                "Adobe Photoshop",
+                "Framer"
+            ],
+            "summary": "La Vida is an event organizing team specializing in high-energy social events, including rave parties, club nights, and themed gatherings. We manage all facets of event production—from venue selection and talent curation to logistics, technical production, and strategic promotion.",
+            "metrics": [
+                "Comprehensive event production management",
+                "Strategic promotion and talent curation",
+                "Delivered impactful experiences like Elgon's Secret Garden Pool Party"
+            ],
+            "year": 2025,
+            "category": "Branding"
+        },
+        {
+            "title": "THE CAPITOL — Event Identity",
+            "subtitle": "A vibrant, youth-focused brand identity for a major city event.",
+            "roles": [
+                "Brand Designer",
+                "Graphic Designer"
+            ],
+            "tools": [
+                "Adobe Illustrator",
+                "Adobe Photoshop",
+                "Figma"
+            ],
+            "summary": "Developed a comprehensive brand identity for 'The Capitol Party,' including logo, typography, color palette, and promotional materials.",
+            "metrics": [
+                "1,000+ event registrations within the first week",
+                "500k+ social media impressions",
+                "Secured 10+ local business sponsorships"
+            ],
+            "year": 2024,
+            "category": "Branding"
+        },
+        {
+            "title": "Custopia: VR Customer Service Simulator",
+            "subtitle": "The VR Game That Turns Training into a Thrilling Adventure",
+            "roles": [
+                "Game Designer",
+                "Project Manager"
+            ],
+            "tools": [
+                "Unity",
+                "VR Technology",
+                "C#",
+                "Google Slides"
+            ],
+            "summary": "A cutting-edge virtual reality platform meticulously crafted to elevate customer service skills for young adults and professionals through immersive, real-life scenarios.",
+            "metrics": [
+                "Finalist for Game Programming 2 Course Pitch",
+                "Integrated emotional intelligence tracking system",
+                "Simulated complex AI customer interactions"
+            ],
+            "year": 2023,
+            "category": "Games & Experiments"
+        },
+        {
+            "title": "CreateX by Artist Hub USLS",
+            "subtitle": "Beyond the Canvas: Shaping Artist Hub's Visual Narrative",
+            "roles": [
+                "Lead Designer",
+                "Storyteller"
+            ],
+            "tools": [
+                "Adobe Photoshop",
+                "Adobe Illustrator",
+                "Canva"
+            ],
+            "summary": "Lead Designer for a series of art workshops for children held by the USLS Artists' Hub, weaving a visual tapestry that binds playful PLAYSHOP posters and sleek conference brochures.",
+            "metrics": [
+                "Designed for diverse audiences (filmmakers to kids)",
+                "Collaborated with educators and artists",
+                "Created a kinetic energy through visual narrative"
+            ],
+            "year": 2023,
+            "category": "Branding"
+        },
+        {
+            "title": "Google Developer Events Branding",
+            "subtitle": "Connecting Communities through International, National, and Local Visuals",
+            "roles": [
+                "Lead Designer",
+                "GDSC Lead",
+                "Co-Lead Creatives"
+            ],
+            "tools": [
+                "Adobe Photoshop",
+                "Figma",
+                "Branding Systems"
+            ],
+            "summary": "As a GDSC Lead and Co-Lead Creatives, I designed the visual identity for major Google events, bridging continents and cultures through impactful design and storytelling.",
+            "metrics": [
+                "800+ participants for DevFest 2023",
+                "30+ GDSC partners globally for Perennial",
+                "Nationwide reach for LAWIG Info Session"
+            ],
+            "year": 2023,
+            "category": "Community & Events"
+        },
+        {
+            "title": "Valtara: The Elemental's Quest",
+            "subtitle": "A 2D Platformer Game Where Platforming Meets Eco-Activism",
+            "roles": [
+                "Game Developer",
+                "Level Designer"
+            ],
+            "tools": [
+                "Unity",
+                "C#",
+                "Aseprite",
+                "Canva"
+            ],
+            "summary": "Valtara is an action-adventure platformer set in a world on the brink of ecological collapse, designed to raise awareness about global environmental issues through immersive gameplay.",
+            "metrics": [
+                "Applied CSP209 Game Programming 1 skills",
+                "Designed unique elemental ability swap system",
+                "Integrated environmental storytelling"
+            ],
+            "year": 2024,
+            "category": "Games & Experiments"
+        },
+        {
+            "title": "Pizzaporia: UI & UX Design Concept & Analysis",
+            "subtitle": "Elevating Mobile App UI/UX for an Emerging Platform",
+            "roles": [
+                "UI/UX Designer",
+                "Product Analyst"
+            ],
+            "tools": [
+                "Figma",
+                "User Research",
+                "Prototyping",
+                "Canva"
+            ],
+            "summary": "A comprehensive UI/UX overhaul of Pizzaporia, transforming a disjointed interface into an aesthetically-pleasing and seamless mobile experience focused on consistency and user goals.",
+            "metrics": [
+                "Boosted engagement by simplifying order tracking",
+                "Achieved high accessibility with better color contrast",
+                "Reduced visual noise for a polished interface"
+            ],
+            "year": 2024,
+            "category": "UI/UX"
+        },
+        {
+            "title": "SmileIT Inc. — Web App Solution",
+            "subtitle": "Revamping SmileIT Computer Institute's Online Presence",
+            "roles": [
+                "CEO",
+                "Lead UI/UX Designer",
+                "Web Developer"
+            ],
+            "tools": [
+                "React",
+                "Next.js",
+                "Tailwind CSS",
+                "Vercel",
+                "Canva"
+            ],
+            "summary": "As CEO and Lead UI/UX Designer, I spearheaded the digital transformation of SmileIT, crafting a professional MVP to democratize access to quality IT education in Bacolod City.",
+            "metrics": [
+                "Successfully deployed professional MVP on Vercel",
+                "Collaborative effort with developer & research teams",
+                "Optimized for desktop, tablet, and mobile responsiveness"
+            ],
+            "year": 2024,
+            "category": "Startups & Innovation"
+        },
+        {
+            "title": "SaucyKPS Bot v1",
+            "subtitle": "Architectural Transformation of a Traditional Restaurant into a Telegram-Native Cloud Kitchen",
+            "roles": [
+                "Backend Developer",
+                "System Architect",
+                "Full-Stack Engineer"
+            ],
+            "tools": [
+                "Node.js",
+                "Telegram Bot API",
+                "Supabase (PostgreSQL)",
+                "Webhooks",
+                "HTML5/CSS3",
+                "JavaScript"
+            ],
+            "summary": "A full-stack automation ecosystem that transforms a traditional restaurant into a 'Cloud Kitchen' model. By utilizing Telegram as the primary infrastructure, the project eliminates 20-30% commission fees typical of third-party delivery platforms while providing a professional, automated POS experience.",
+            "metrics": [
+                "Eliminated 5-15 minute 'dead zone' in order processing",
+                "Reduced order-to-rider dispatch time to <1 second",
+                "Zero commission fees by bypassing third-party delivery platforms",
+                "Automated identity mapping eliminates manual customer data entry",
+                "Real-time receipt generation enhances customer trust"
+            ],
+            "year": 2025,
+            "category": "Web Development"
+        },
+        {
+            "title": "GDG Bacolod Community Platform",
+            "subtitle": "Community-Driven Software for Developer Chapter Management",
+            "roles": [
+                "Full-Stack Developer",
+                "UI/UX Designer",
+                "Community Organizer"
+            ],
+            "tools": [
+                "React 19",
+                "TypeScript",
+                "Vite",
+                "Tailwind CSS v4",
+                "Firebase Firestore",
+                "html-to-image",
+                "jsPDF",
+                "Vercel"
+            ],
+            "summary": "A web application built to serve as the digital home for the Google Developer Group (GDG) Bacolod chapter. This platform automates everyday community management tasks like certificate generation and event tracking.",
+            "metrics": [
+                "Automated certificate generation saves time for organizers",
+                "Centralized archive preserves event history and moments",
+                "Offline-ready fallback for venues with poor connectivity",
+                "Multi-format certificate export (PNG & PDF)",
+                "Public validation portal for certificate verification"
+            ],
+            "year": 2025,
+            "category": "Web Development"
+        },
+        {
+            "title": "Slick Store — Full‑Stack Sneaker Marketplace",
+            "subtitle": "A React + Supabase architecture study for sneaker resell flows",
+            "roles": [
+                "Full-Stack Developer",
+                "UI/UX Designer"
+            ],
+            "tools": [
+                "React",
+                "TypeScript",
+                "Vite",
+                "Tailwind CSS",
+                "Supabase (PostgreSQL, Auth, Storage)",
+                "Vercel"
+            ],
+            "summary": "Slick Store is a full-stack e‑commerce prototype focused on the sneaker reselling space, exploring how to model products, variants, and orders in PostgreSQL while delivering a modern frontend experience.",
+            "metrics": [
+                "Relational schema for products, variants, and orders in PostgreSQL",
+                "Inventory updates scoped to specific size variants",
+                "Supabase-backed authentication for shopper accounts",
+                "Cart and checkout flow connected to real database records",
+                "Client-side filters for brand, size, and price without full page reloads"
+            ],
+            "year": 2025,
+            "category": "Web Development"
+        },
+        {
+            "title": "Capture Pixels — Photography Portfolio Platform",
+            "subtitle": "Engineering a Cinematic 3D Photography Ecosystem",
+            "roles": [
+                "Full-Stack Developer",
+                "UI/UX Designer",
+                "Frontend Engineer"
+            ],
+            "tools": [
+                "Next.js 16",
+                "React 19",
+                "TypeScript",
+                "Tailwind CSS 4",
+                "Framer Motion 12",
+                "Supabase (PostgreSQL)",
+                "Radix UI",
+                "shadcn/ui",
+                "Vercel"
+            ],
+            "summary": "A high-performance, full-stack photography portfolio designed to push the boundaries of modern web aesthetics. Built with Next.js 16 and React 19, the platform shifts away from static galleries toward a physics-based, interactive media experience.",
+            "metrics": [
+                "60fps 3D animations provide premium 'luxury' feel",
+                "Zero-friction content management workflow for non-technical users",
+                "Instant revalidation ensures global updates within milliseconds",
+                "High-performance Core Web Vitals (LCP/CLS) maintained",
+                "Secure admin dashboard with HTTP-only cookies and middleware protection"
+            ],
+            "year": 2025,
+            "category": "Web Development"
+        },
+        {
+            "title": "Signalin: Accessibility App Concept",
+            "subtitle": "Helping Hearing & Speech Impaired Individuals Connect",
+            "roles": [
+                "CEO",
+                "Project Manager",
+                "UI Designer"
+            ],
+            "tools": [
+                "Figma",
+                "Pitch Deck Design",
+                "UX Strategy",
+                "Canva"
+            ],
+            "summary": "As CEO and Project Manager, I developed Signalin to bridge communication gaps for the deaf and hard-of-hearing community, leading the project to become a regional startup finalist.",
+            "metrics": [
+                "Finalist for the Regional Startup Challenge",
+                "Caters to an underserved accessibility demographic",
+                "Advocated for positive change through design"
+            ],
+            "year": 2023,
+            "category": "Startups & Innovation"
+        },
+        {
+            "title": "DevFest 2023: Bacolod Tech Takeover",
+            "subtitle": "Hosting and Organizing Bacolod's Biggest Tech Event",
+            "roles": [
+                "Event Host",
+                "Creatives Lead",
+                "Acting President DEVCON"
+            ],
+            "tools": [
+                "Public Speaking",
+                "Event Management",
+                "Graphic Design",
+                "Canva"
+            ],
+            "summary": "As Acting President of DEVCON Bacolod and Co-Lead Creatives, I hosted Day 1 of DevFest 2023 and designed the main event visuals, celebrating a vibrant tech community of over 800 participants.",
+            "metrics": [
+                "800+ participants and curious passersby",
+                "Main event poster plastered across Ayala Malls",
+                "Guided sessions on AI, animation, and more"
+            ],
+            "year": 2023,
+            "category": "Community & Events"
+        },
+        {
+            "title": "UI/UX Analysis and Design for Existing Applications",
+            "subtitle": "Optimizing ILOVEUSAM, Metrobank, and Peddlr",
+            "roles": [
+                "UI/UX Designer"
+            ],
+            "tools": [
+                "Figma",
+                "Redesign Strategy",
+                "Canva"
+            ],
+            "summary": "Tasked with restyling and optimizing three popular apps, I leveraged expertise in layout and visual hierarchy to align them with modern design best practices and improve key metrics.",
+            "metrics": [
+                "Improved first impressions for Metrobank login",
+                "Simplified service discovery for ILOVEUSAM",
+                "Uniform UI styles established across all platforms"
+            ],
+            "year": 2024,
+            "category": "UI/UX"
+        },
+        {
+            "title": "My Google Developer Journey",
+            "subtitle": "From a Team of Eight to a Global Force",
+            "roles": [
+                "Lead",
+                "CEO",
+                "Event Organizer"
+            ],
+            "tools": [
+                "Leadership",
+                "Community Building",
+                "Project Management",
+                "AR Technology"
+            ],
+            "summary": "Led the Google Developer Student Clubs at USLS from a small group to a global force, achieving unprecedented milestones in community building and international collaboration.",
+            "metrics": [
+                "Grew membership from 8 to 150+ in one month",
+                "Organized 30+ events with 5,000+ participants",
+                "First chapter globally to host an International GDSC Collab"
+            ],
+            "year": 2022,
+            "category": "Community & Events"
+        },
+        {
+            "title": "Behind-the-Scenes: Event Poster Magic",
+            "subtitle": "A Design Duo's Journey in Crafting Creativity",
+            "roles": [
+                "Creative Director",
+                "CEO",
+                "Mentor"
+            ],
+            "tools": [
+                "Discord",
+                "Adobe Photoshop",
+                "GDSC Branding"
+            ],
+            "summary": "A deep dive into the collaborative process between Leigh Andrew Eslawa and Gian Aibo, exploring how a blend of organized aesthetics and spontaneous creativity produces captivating brand-aligned posters.",
+            "metrics": [
+                "Mentored a Design Officer to Lead Designer transition",
+                "Unified 4-color GDSC branding across all collateral",
+                "Executed 10+ high-impact international event posters"
+            ],
+            "year": 2024,
+            "category": "Branding"
+        },
+        {
+            "title": "THE MAKING OF GIAN AIBO 2026",
+            "subtitle": "Designing a World-Class Digital Experience",
+            "roles": [
+                "Architect",
+                "Shader Artist",
+                "Lead Developer"
+            ],
+            "tools": [
+                "React 19",
+                "Three.js",
+                "Framer Motion",
+                "GSAP",
+                "PostCSS 4"
+            ],
+            "summary": "A meta-study on the engineering and design choices behind this very website. Combining Next.js 16, custom GLSL shaders, and MacOS-inspired glassmorphism to create a high-end digital experience.",
+            "metrics": [
+                "Real-time GPU-based theme switching",
+                "Interactive 3D folder navigation system",
+                "Zero-flash theme persistence using sessionStorage",
+                "Sub-100ms interaction latency across all WebGL nodes"
+            ],
+            "year": 2025,
+            "category": "UI/UX"
+        },
+        {
+            "title": "your des(ai)gn",
+            "subtitle": "AI and creative tools — dark luxury interface",
+            "roles": [
+                "Creative Direction",
+                "Full Stack Development"
+            ],
+            "tools": [
+                "Product Design",
+                "WebGL",
+                "UX Engineering",
+                "Dark UI"
+            ],
+            "summary": "A premium digital environment built for creative tools, featuring a high-contrast dark interface, custom hardware-accelerated shaders, and precise typography. Implementation focuses on tactile feedback and high-performance animation.",
+            "metrics": [],
+            "category": "Web Development"
+        }
+    ],
+    "academic_achievements": {
+        "college": {
+            "honors": [
+                "CUM LAUDE with an OVERALL GWA: 1.3 (97%)",
+                "College Awardee - Outstanding Intern Award",
+                "Rank 1 — Highest GWA across all colleges and year levels (7,042 students) — University of St. La Salle Recognition Rites, 1st Year (2021-2022)"
+            ],
+            "deansList": [
+                "1st Year, 1st Semester - First Honors Deans' List",
+                "1st Year, 2nd Semester - First Honors Deans' List",
+                "2nd Year, 1st Semester - First Honors Deans' List",
+                "2nd Year, 2nd Semester - First Honors Deans' List",
+                "3rd Year, 1st Semester - First Honors Deans' List",
+                "3rd Year, 2nd Semester - First Honors Deans' List",
+                "4th Year, 1st Semester - First Honors Deans' List",
+                "4th Year, 2nd Semester - First Honors Deans' List"
+            ],
+            "awards": [
+                "Outstanding Intern College Award – Seniors' Recognition Rites (2025)",
+                "Google Developer Groups on Campus USLS - Legacy Builder Award (2025)",
+                "Best in 3D Game – Game On USLS (2024) – Group Award",
+                "Best in Mobile Game – Game On USLS (2024) – Group Award",
+                "Best in Character and Asset Design – Game On USLS (2024) – Group Award",
+                "Best in 2D Game Design – Game On USLS (2024) – Group Award",
+                "Best in 2D Game – Game On USLS (2024) – Group Award",
+                "Best in Game Concept – Game On USLS (2024) – Group Award",
+                "Best in Sound Design – Game On USLS (2024) – Group Award",
+                "Top 10 – Philippine Creative Awards for Animation and Games from GDAP & Animation Council of the Philippines (2024) – Group Award",
+                "Best in Art Direction – Philippine Creative Awards for Animation and Games from GDAP & Animation Council of the Philippines (2024) – Group Award",
+                "Most Outstanding Student in the Field of Visual Arts – Animo Grand Cup (2023)",
+                "Most Outstanding Student in the Field of Student Service – Corps d' Elite Recipient (2023)",
+                "Most Outstanding Special Interest Club President – Corps d' Elite Recipient (2023)",
+                "Role Model of the Year – Google Awards (2023)",
+                "Google Fellow of the Year – Google Awards (2023)",
+                "Distinguished Achievement Award for External Leadership – CS Department (2023)",
+                "Best Thesis Project Presenters – CS Department (2023) – Group Award",
+                "Best Web Game Technologies Project Concept – CS Department (2023) – Group Award",
+                "Most Outstanding Student in the Field of Visual Arts – Corps d' Elite Finalist (2022)",
+                "Google Career Certificate Scholar (2022)"
+            ],
+            "affiliations": [
+                "Layout Artist Head, College of Engineering & Tech Council, University of St. La Salle (2021)",
+                "Layout Artist & Marketing, Maskara Theatre Ensemble (2021)",
+                "Lead, Google Developer Student Clubs (2022–2023)",
+                "Member and Volunteer, DEVCON Philippines (2023–Present)",
+                "Organizer, Google Developer Groups on Campus, University of St. La Salle (2024–Present)",
+                "GeeksPH Volunteer, Geeks On A Beach — GOAB7 2024 (2024)",
+                "Member, AWS Cloud Club – University of St. La Salle Chapter (2024–Present)",
+                "Project Lead, SONDER: Google Dev World Tour, Google Developer Groups on Campus Philippines (2024–Present)"
+            ]
+        },
+        "seniorHigh": {
+            "school": "Liceo De La Salle Bacolod Senior High School",
+            "strand": "Science, Technology, Engineering & Mathematics",
+            "honors": [
+                "With Highest Honors",
+                "Principal's Distinction Award",
+                "Licean Scholarship Grantee – Scholars who ranked 1st of their batch in Junior High School",
+                "Best Capstone Project – Liceo Research Colloquium"
+            ],
+            "awards": [
+                "Most Outstanding Student in the Field of Culture and Arts – Laurier de La Salle (2021)"
+            ],
+            "roles": [
+                "Layout Artist, Photographer, Photo & Video Editor – Mimesis Media Arts Club (2019–2020)",
+                "Layout Artist & Graphic Designer – Berdeng Parola, Official Filipino Publication of Liceo de La Salle (2019–2021)",
+                "Aspirant – Maskara Theatre Ensemble, University of St. La Salle (2019–2021)",
+                "Member – Liceo Dance Club (2020–2021)"
+            ]
+        },
+        "juniorHigh": {
+            "honors": [
+                "First Honors (Rank 1 of the Batch)",
+                "Best in Math",
+                "Best in English",
+                "Best in Filipino",
+                "Best in Science",
+                "Best in Christian Living",
+                "Best in Computer",
+                "Best in MAPEH",
+                "Best in Araling Panlipunan"
+            ],
+            "awards": [
+                "Sen. Manny Villar Sipag Award",
+                "Loyalty Award",
+                "Sports Awardee, Cultural Awardee, Service Awardee"
+            ],
+            "roles": [
+                "SGO President (2018–2019)",
+                "SGO Executive Committee Excellency Award",
+                "PRISSAAP Awardee",
+                "PRISSAAP Best Leader Award and Certificate",
+                "PRISSAAP Scene Stealer Award and Certificate",
+                "PRISSAAP Group Best in Cheers & Yells Award and Certificate",
+                "Band Member (Since Grade 3)",
+                "Choir Member (Since Grade 3)",
+                "Vice President – PRISSAAP Region VI",
+                "CAT Completer as Cadet Sgt.",
+                "BSP Division Advancement Camp Participant",
+                "Consistent SGO Officer (Since Grade 4)",
+                "Little Mr. St. Francis (2009)",
+                "Little Mr. United Nations (2010)",
+                "Mr. United Nations (2015, 2016)",
+                "Mr. Valentines 1st Runner-Up (2015)",
+                "Scrabble – DACS Canlaon (Champion)",
+                "Volleyball – DACS Canlaon (Silver Medalist)",
+                "Badminton – DACS Canlaon (Silver Medalist)",
+                "Battle of the Bands – DACS Canlaon (Champion)"
+            ]
+        },
+        "elementary": {
+            "honors": [
+                "First Honors (Rank 1 of the Batch)",
+                "Best in English",
+                "Best in Science",
+                "Best in Math",
+                "Best in Sibika",
+                "Best in Filipino",
+                "Best in HELE"
+            ],
+            "awards": [
+                "Computer Wizard",
+                "Conduct Awardee",
+                "Leadership Awardee",
+                "Sports Awardee",
+                "Artist of the Year",
+                "Singer of the Year",
+                "Cultural Awardee"
+            ],
+            "roles": [
+                "Choir Member",
+                "Band Member",
+                "Vice President – PRISSAAP Region VI",
+                "Most Outstanding Pupil – Private School of the 10th PRISSAAP Educator's Award – Region VI",
+                "Consistent SGO Representative (Grade 4 to Grade 6)"
+            ]
+        }
+    },
+    "certifications": {
+        "Google": [
+            "Attract and Engage Customers with Digital Marketing",
+            "Gemini in Google Docs",
+            "Gemini in Google Slides",
+            "Introduction to Generative AI",
+            "Make the Sale: Build, Launch, and Manage E-commerce Stores",
+            "Generative AI Fundamentals",
+            "Foundations of Digital Marketing and E-commerce",
+            "Foundations of Project Management",
+            "Foundations of User Experience (UX) Design",
+            "Foundations: Data, Data, Everywhere",
+            "Technical Support Fundamentals"
+        ],
+        "Microsoft": [
+            "Trophy - Bring AI to your business with AI Builder",
+            "Trophy - Create Machine Learning Models",
+            "Trophy - Create bots with Power Virtual Agents",
+            "Trophy - Foundations of Data Science for Machine Learning",
+            "Trophy - Improve Business Performance with AI Builder",
+            "Trophy - Microsoft Azure AI Fundamentals: Explore visual tools for machine learning",
+            "Trophy - Understand Data Science for Machine Learning"
+        ],
+        "IBM": [
+            "Solving Problems with Creative and Critical Thinking",
+            "Data Science 101",
+            "Introduction to Cloud",
+            "Introduction to Quantum Computing",
+            "Statistics 101"
+        ],
+        "DataCamp": [
+            "AI Engineer for Developers Associate",
+            "Working with the OpenAI API",
+            "AI Fundamentals",
+            "Introduction to ChatGPT"
+        ],
+        "Canva": [
+            "AI in the classroom",
+            "Canva Essentials",
+            "Graphic Design Essentials"
+        ],
+        "GitHub": [
+            "GitHub Foundations"
+        ],
+        "YouTube": [
+            "YouTube Music Certification"
+        ]
+    }
+}

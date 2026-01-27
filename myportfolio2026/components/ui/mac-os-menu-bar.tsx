@@ -168,15 +168,15 @@ const MiniFolder: React.FC<MiniFolderProps> = ({ color }) => {
   // Parse the rgba color to extract components
   const baseColor = color.replace(/[\d.]+\)$/, '');
 
-  // Opacity values - reduced by ~10% as requested
+  // Opacity values - match the 3D folder style
   const folderBackColor = `${baseColor}0.65)`;
   const folderFrontColor = `${baseColor}0.75)`;
   const folderTabColor = `${baseColor}0.85)`;
   const folderGlowColor = `${baseColor}0.35)`;
 
   return (
-    <div className="relative w-[36px] h-[27px] flex items-center justify-center mb-2 group/folder perspective-[600px]">
-      {/* Background Glow - Matches project folders */}
+    <div className="relative w-[48px] h-[36px] flex items-center justify-center mb-2 group/folder perspective-[600px]">
+      {/* Background Glow */}
       <div
         className="absolute inset-[-12px] opacity-60 transition-opacity duration-300 pointer-events-none"
         style={{
@@ -184,29 +184,30 @@ const MiniFolder: React.FC<MiniFolderProps> = ({ color }) => {
           zIndex: 0
         }}
       />
+
       {/* Folder Back Layer */}
       <div
-        className="absolute rounded-[3px] backdrop-blur-[4px] transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/folder:bg-opacity-100 group-hover/folder:[transform:translateY(0)_rotateX(-10deg)]"
+        className="absolute rounded-[4px] backdrop-blur-[4px] transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/folder:[transform:rotateX(-10deg)]"
         style={{
           backgroundColor: folderBackColor,
-          width: '36px',
-          height: '27px',
+          width: '48px',
+          height: '36px',
           border: '0.5px solid rgba(255,255,255,0.2)',
           transformOrigin: 'bottom center',
-          transform: 'translateY(0) rotateX(0deg)',
+          transform: 'rotateX(0deg)',
           zIndex: 1
         }}
       />
 
       {/* Folder Tab */}
       <div
-        className="absolute rounded-t-[2px] backdrop-blur-[4px] transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/folder:[transform:rotateX(-15deg)_translateY(-1px)]"
+        className="absolute rounded-t-[3px] backdrop-blur-[4px] transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/folder:[transform:rotateX(-15deg)_translateY(-1px)]"
         style={{
           backgroundColor: folderTabColor,
-          width: '14px',
-          height: '5px',
-          top: '-4px',
-          left: '4px',
+          width: '18px',
+          height: '6px',
+          top: '-5px',
+          left: '5px',
           border: '0.5px solid rgba(255,255,255,0.25)',
           borderBottom: 'none',
           transformOrigin: 'bottom center',
@@ -217,15 +218,26 @@ const MiniFolder: React.FC<MiniFolderProps> = ({ color }) => {
 
       {/* Folder Front Layer */}
       <div
-        className="absolute rounded-[3px] backdrop-blur-[4px] transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/folder:[transform:translateY(0)_rotateX(15deg)_translateY(2px)]"
+        className="absolute rounded-[4px] backdrop-blur-[4px] transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/folder:[transform:rotateX(15deg)_translateY(2px)]"
         style={{
           backgroundColor: folderFrontColor,
-          width: '36px',
-          height: '27px',
-          top: '1px',
+          width: '48px',
+          height: '36px',
+          top: '2px',
           border: '0.5px solid rgba(255,255,255,0.2)',
           transformOrigin: 'bottom center',
           zIndex: 10
+        }}
+      />
+
+      {/* Shine Effect */}
+      <div
+        className="absolute w-12 h-8 rounded-[4px] overflow-hidden pointer-events-none transition-transform duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover/folder:[transform:rotateX(15deg)_translateY(2px)]"
+        style={{
+          top: '2px',
+          background: "linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%)",
+          transformOrigin: 'bottom center',
+          zIndex: 11
         }}
       />
     </div>

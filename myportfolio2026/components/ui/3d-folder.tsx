@@ -75,7 +75,10 @@ export function AnimatedFolder({ title, projects, className, color, href, isPinn
     // Only redirect on desktop (when hovered), not on mobile
     // On mobile, users can tap project cards to preview them
     if (href && isHovered && window.innerWidth >= 768) {
-      router.push(href)
+      // Add delay to allow microinteractions to be seen
+      setTimeout(() => {
+        router.push(href)
+      }, 5000)
     }
   }
 

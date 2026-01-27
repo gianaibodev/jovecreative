@@ -10,6 +10,7 @@ import { Footer } from "@/components/ui/footer-section";
 import { FloatingConsultButtonPortal } from "@/components/ui/floating-consult-button-portal";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
+import { SmoothScroll } from "@/components/smooth-scroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -74,21 +75,23 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ThemeProvider>
-          <PerformanceProvider>
-            <CopyModeProvider>
-              <FullPageLoadingProvider>
-                <FramerMotionProvider>
-                  <div className="flex min-h-screen flex-col">
-                    <main className="flex-1">{children}</main>
-                    <Footer />
-                    <FloatingConsultButtonPortal imageSrc="/lib/image.jpeg" />
-                  </div>
-                  <SpeedInsights />
-                  <Analytics />
-                </FramerMotionProvider>
-              </FullPageLoadingProvider>
-            </CopyModeProvider>
-          </PerformanceProvider>
+          <SmoothScroll>
+            <PerformanceProvider>
+              <CopyModeProvider>
+                <FullPageLoadingProvider>
+                  <FramerMotionProvider>
+                    <div className="flex min-h-screen flex-col">
+                      <main className="flex-1">{children}</main>
+                      <Footer />
+                      <FloatingConsultButtonPortal imageSrc="/lib/image.jpeg" />
+                    </div>
+                    <SpeedInsights />
+                    <Analytics />
+                  </FramerMotionProvider>
+                </FullPageLoadingProvider>
+              </CopyModeProvider>
+            </PerformanceProvider>
+          </SmoothScroll>
         </ThemeProvider>
       </body>
     </html>

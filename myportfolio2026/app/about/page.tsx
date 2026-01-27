@@ -190,13 +190,13 @@ export default function AboutPage() {
               </h2>
               <p className="text-muted-foreground text-lg max-w-xl">A condensed view of major creative and academic wins. Explore the full history below.</p>
             </div>
-            <button
-              onClick={() => setShowArchive(true)}
+            <Link
+              href="/achievements"
               className="px-8 py-4 rounded-full bg-blue-500/10 hover:bg-blue-500/20 text-blue-600 dark:text-blue-400 font-bold border border-blue-500/20 transition-all flex items-center gap-2"
             >
               Open Full Archive
               <ArrowUpRight size={18} />
-            </button>
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
@@ -222,7 +222,7 @@ export default function AboutPage() {
               </h3>
               <div className="space-y-4">
                 {accolades.college.affiliations.slice(0, 5).map((a, i) => (
-                  <div key={i} className="p-4 rounded-2xl bg-white/5 border border-white/5 text-xs font-semibold uppercase tracking-widest text-emerald-600 dark:text-emerald-400">{a}</div>
+                  <div key={i} className="p-4 rounded-2xl bg-white/5 border border-white/5 text-sm font-medium text-emerald-600 dark:text-emerald-400">{a}</div>
                 ))}
               </div>
             </div>
@@ -249,7 +249,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <AchievementArchiveModal isOpen={showArchive} onClose={() => setShowArchive(false)} />
+      {/* <AchievementArchiveModal isOpen={showArchive} onClose={() => setShowArchive(false)} /> */}
 
       {/* Marquee: AWARDS • ACHIEVEMENTS • WINS • AFFILIATIONS */}
       <div className="marquee-fade-edges overflow-hidden border-y border-zinc-300 dark:border-white/10 bg-white/[0.02] py-4">

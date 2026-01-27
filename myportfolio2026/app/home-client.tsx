@@ -294,9 +294,10 @@ export default function HomeClient({ galleryImages }: { galleryImages: GalleryIm
                       <div className="absolute w-3 h-3 bg-blue-500 rounded-full -left-[7px] top-1.5" />
                       <h4 className="font-bold">College — University of St. La Salle</h4>
                       <p className="text-sm text-muted-foreground">Bachelor of Science in Computer Science (2021-2025)</p>
-                      <p className="text-xs font-medium text-blue-600 mt-1 uppercase tracking-wider">Cum Laude • GWA 1.3 / 97%</p>
+                      <p className="text-xs font-medium text-blue-600 mt-1">Cum Laude • GWA 1.3 / 97%</p>
                       <button
                         onClick={() => setShowGrades(true)}
+                        suppressHydrationWarning={true}
                         className="mt-3 inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600/10 hover:bg-blue-600/20 text-blue-600 dark:text-blue-400 text-[10px] font-bold uppercase tracking-widest transition-all"
                       >
                         <ArrowUpRight size={12} />
@@ -307,19 +308,19 @@ export default function HomeClient({ galleryImages }: { galleryImages: GalleryIm
                       <div className="absolute w-3 h-3 bg-green-500 rounded-full -left-[7px] top-1.5" />
                       <h4 className="font-bold">Senior High School</h4>
                       <p className="text-sm text-muted-foreground">STEM • Liceo De La Salle</p>
-                      <p className="text-xs font-medium text-green-600 dark:text-green-400 mt-1 uppercase tracking-wider">With Highest Honors • 98%</p>
+                      <p className="text-xs font-medium text-green-600 dark:text-green-400 mt-1">With Highest Honors • 98%</p>
                     </div>
                     <div className="relative pl-6 border-l-2 border-orange-500/30">
                       <div className="absolute w-3 h-3 bg-orange-500 rounded-full -left-[7px] top-1.5" />
                       <h4 className="font-bold">Junior High School</h4>
                       <p className="text-sm text-muted-foreground">Holy Infant Academy</p>
-                      <p className="text-xs font-medium text-orange-600 dark:text-orange-400 mt-1 uppercase tracking-wider">Highest Honors • Rank 1 • 98.2%</p>
+                      <p className="text-xs font-medium text-orange-600 dark:text-orange-400 mt-1">Highest Honors • Rank 1 • 98.2%</p>
                     </div>
                     <div className="relative pl-6 border-l-2 border-pink-500/30">
                       <div className="absolute w-3 h-3 bg-pink-500 rounded-full -left-[7px] top-1.5" />
                       <h4 className="font-bold">Primary School</h4>
                       <p className="text-sm text-muted-foreground">Holy Infant Academy</p>
-                      <p className="text-xs font-medium text-pink-600 dark:text-pink-400 mt-1 uppercase tracking-wider">Valedictorian • 97.4%</p>
+                      <p className="text-xs font-medium text-pink-600 dark:text-pink-400 mt-1">Valedictorian • 97.4%</p>
                     </div>
                   </div>
                 </m.div>

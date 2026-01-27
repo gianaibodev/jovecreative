@@ -3,7 +3,7 @@
 import { useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import MacOSMenuBar from "@/components/ui/mac-os-menu-bar";
-import { motion } from "framer-motion";
+import { m, LazyMotion, domAnimation } from "framer-motion";
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { GitPullRequest, ExternalLink } from "lucide-react";
@@ -76,13 +76,13 @@ export default function CategoryPage() {
           cache: "no-store",
           signal: controller.signal,
         });
-        
+
         clearTimeout(timeoutId);
-        
+
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
-        
+
         const json = (await res.json()) as { categories?: ApiCategory[] };
         if (cancelled) return;
         setApiCategories(json.categories ?? []);
@@ -222,70 +222,71 @@ export default function CategoryPage() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-background">
-      <MacOSMenuBar appName={category.name} />
+    <LazyMotion features={domAnimation}>
+      <div className="w-full min-h-screen bg-background">
+        <MacOSMenuBar appName={category.name} />
 
-      <PixelHeader
-        title={category.name}
-        subtitle="These are the hero projects that define this discipline. Skim the highlights here, then deep-dive into the full trillions-level case studies."
-        colors={["#3b82f6", "#10b981", "#f59e0b", "#8b5cf6"]}
-        backLink={
-          <Link href="/projects" className="flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors">
-            <GitPullRequest className="size-4" />
-            <span>← Back to all folders</span>
-          </Link>
-        }
-      />
+        <PixelHeader
+          title={category.name}
+          subtitle="These are the hero projects that define this discipline. Skim the highlights here, then deep-dive into the full trillions-level case studies."
+          colors={["#3b82f6", "#10b981", "#f59e0b", "#8b5cf6"]}
+          backLink={
+            <Link href="/projects" className="flex items-center gap-2 text-sm font-medium text-white/80 hover:text-white transition-colors">
+              <GitPullRequest className="size-4" />
+              <span>← Back to all folders</span>
+            </Link>
+          }
+        />
 
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className="pb-24"
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-8 sm:mt-12">
-          <div className="grid gap-6 sm:gap-8">
-            {category.studies.map((study) => (
-              <div
-                key={study.slug}
-                className="rounded-[24px] sm:rounded-[32px] border border-zinc-300 dark:border-white/10 backdrop-blur-2xl bg-white/5 dark:bg-white/[0.02] p-4 sm:p-6 md:p-8 grid gap-4 sm:gap-6 md:gap-8 md:grid-cols-[2fr,1fr]"
-              >
-                <div className="space-y-3 sm:space-y-4 order-2 md:order-1">
-                  <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
-                    {study.category} • {study.year}
-                  </p>
-                  <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold break-words">{study.title}</h2>
-                  <p className="text-sm sm:text-base text-muted-foreground break-words">{study.summary}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {study.tags.map((tag) => (
-                      <span key={tag} className="px-2 sm:px-3 py-1 rounded-full bg-white/10 text-xs text-muted-foreground">
-                        {tag}
-                      </span>
-                    ))}
+        <m.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="pb-24"
+        >
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 mt-8 sm:mt-12">
+            <div className="grid gap-6 sm:gap-8">
+              {category.studies.map((study) => (
+                <div
+                  key={study.slug}
+                  className="rounded-[24px] sm:rounded-[32px] border border-zinc-300 dark:border-white/10 backdrop-blur-2xl bg-white/5 dark:bg-white/[0.02] p-4 sm:p-6 md:p-8 grid gap-4 sm:gap-6 md:gap-8 md:grid-cols-[2fr,1fr]"
+                >
+                  <div className="space-y-3 sm:space-y-4 order-2 md:order-1">
+                    <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">
+                      {study.category} • {study.year}
+                    </p>
+                    <h2 className="text-xl sm:text-2xl md:text-3xl font-semibold break-words">{study.title}</h2>
+                    <p className="text-sm sm:text-base text-muted-foreground break-words">{study.summary}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {study.tags.map((tag) => (
+                        <span key={tag} className="px-2 sm:px-3 py-1 rounded-full bg-white/10 text-xs text-muted-foreground">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="flex flex-wrap gap-3 sm:gap-4 text-xs sm:text-sm text-muted-foreground">
+                      {study.metrics.slice(0, 2).map((metric) => (
+                        <span key={metric} className="break-words">{metric}</span>
+                      ))}
+                    </div>
+
+                    {study.isOverviewOnly && study.externalHref ? (
+                      <a
+                        href={study.externalHref}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-sm sm:text-base text-blue-500 dark:text-blue-300 font-semibold break-words group"
+                      >
+                        {study.ctaLabel || "Visit site"}
+                        <ExternalLink className="size-4 transition-transform group-hover:translate-x-1" />
+                      </a>
+                    ) : (
+                      <Link href={`/blog/${study.slug}`} className="inline-flex items-center gap-2 text-sm sm:text-base text-blue-500 dark:text-blue-300 font-semibold break-words">
+                        Read the case study →
+                      </Link>
+                    )}
                   </div>
-                  <div className="flex flex-wrap gap-3 sm:gap-4 text-xs sm:text-sm text-muted-foreground">
-                    {study.metrics.slice(0, 2).map((metric) => (
-                      <span key={metric} className="break-words">{metric}</span>
-                    ))}
-                  </div>
-                  
-                  {study.isOverviewOnly && study.externalHref ? (
-                    <a 
-                      href={study.externalHref} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="inline-flex items-center gap-2 text-sm sm:text-base text-blue-500 dark:text-blue-300 font-semibold break-words group"
-                    >
-                      {study.ctaLabel || "Visit site"}
-                      <ExternalLink className="size-4 transition-transform group-hover:translate-x-1" />
-                    </a>
-                  ) : (
-                    <Link href={`/blog/${study.slug}`} className="inline-flex items-center gap-2 text-sm sm:text-base text-blue-500 dark:text-blue-300 font-semibold break-words">
-                      Read the case study →
-                    </Link>
-                  )}
-                </div>
-                <div className="space-y-3 sm:space-y-4 order-1 md:order-2">
+                  <div className="space-y-3 sm:space-y-4 order-1 md:order-2">
                     <ResponsiveImage
                       src={study.heroImage}
                       alt={`${study.title} - ${study.category} project showcase image`}
@@ -293,16 +294,17 @@ export default function CategoryPage() {
                       sizes="(max-width: 640px) 100vw, (max-width: 768px) 100vw, 400px"
                       cover={true}
                     />
-                  <div className="rounded-xl sm:rounded-2xl border border-zinc-300 dark:border-white/10 p-3 sm:p-4 text-xs sm:text-sm space-y-2">
-                    <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Roles</p>
-                    <p className="text-muted-foreground break-words">{study.roles.join(" • ")}</p>
+                    <div className="rounded-xl sm:rounded-2xl border border-zinc-300 dark:border-white/10 p-3 sm:p-4 text-xs sm:text-sm space-y-2">
+                      <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground">Roles</p>
+                      <p className="text-muted-foreground break-words">{study.roles.join(" • ")}</p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </motion.div>
-    </div>
+        </m.div>
+      </div>
+    </LazyMotion>
   );
 }
