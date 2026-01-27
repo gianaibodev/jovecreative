@@ -30,7 +30,6 @@ const PINNED_CATEGORIES = [
   "Internships",
   "Community & Events",
   "Startups & Innovation",
-  "Games & Experiments",
 ];
 
 type ApiCategory = {

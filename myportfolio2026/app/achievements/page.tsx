@@ -1,12 +1,11 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { m, useScroll, useTransform } from "framer-motion";
 import MacOSMenuBar from "@/components/ui/mac-os-menu-bar";
 import { accolades } from "@/components/academic-modals";
 import Link from "next/link";
-import { ArrowLeft, Trophy, Star, Medal, Crown, Calendar, Sparkles } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { ArrowLeft, Trophy, Star, Medal, Crown, Sparkles } from "lucide-react";
 
 function EraSection({
     title,
@@ -22,18 +21,11 @@ function EraSection({
     icon: any
 }) {
     const colorClasses = {
-        blue: "text-blue-500 from-blue-500/20 to-blue-500/5 border-blue-500/10",
-        emerald: "text-emerald-500 from-emerald-500/20 to-emerald-500/5 border-emerald-500/10",
-        amber: "text-amber-500 from-amber-500/20 to-amber-500/5 border-amber-500/10",
-        rose: "text-rose-500 from-rose-500/20 to-rose-500/5 border-rose-500/10",
-    }[color] || "text-zinc-500 from-zinc-500/20 to-zinc-500/5 border-zinc-500/10";
-
-    const accentColor = {
-        blue: "#3b82f6",
-        emerald: "#10b981",
-        amber: "#f59e0b",
-        rose: "#f43f5e",
-    }[color] || "#71717a";
+        blue: "text-blue-600 dark:text-blue-500 from-blue-500/20 to-blue-500/5 border-blue-500/10 bg-blue-500/5",
+        emerald: "text-emerald-600 dark:text-emerald-500 from-emerald-500/20 to-emerald-500/5 border-emerald-500/10 bg-emerald-500/5",
+        amber: "text-amber-600 dark:text-amber-500 from-amber-500/20 to-amber-500/5 border-amber-500/10 bg-amber-500/5",
+        rose: "text-rose-600 dark:text-rose-500 from-rose-500/20 to-rose-500/5 border-rose-500/10 bg-rose-500/5",
+    }[color] || "text-zinc-600 dark:text-zinc-500 from-zinc-500/20 to-zinc-500/5 border-zinc-500/10 bg-zinc-500/5";
 
     // Flatten data for display
     const items = useMemo(() => {
@@ -46,9 +38,9 @@ function EraSection({
     }, [data]);
 
     return (
-        <section className="relative py-24 pl-8 md:pl-16 border-l border-dashed border-white/10 ml-4 md:ml-12 last:pb-32">
+        <section className="relative py-20 pl-8 md:pl-16 border-l border-dashed border-zinc-300 dark:border-white/10 ml-4 md:ml-12 last:pb-32">
             {/* Timeline Node */}
-            <div className="absolute -left-[9px] top-24 w-[18px] h-[18px] rounded-full bg-zinc-950 border-2 border-zinc-800 ring-4 ring-zinc-950 group-hover:border-white transition-colors">
+            <div className="absolute -left-[9px] top-20 w-[18px] h-[18px] rounded-full bg-background border-2 border-zinc-300 dark:border-zinc-700 ring-4 ring-background dark:ring-zinc-950 group-hover:border-primary transition-colors">
                 <div className={`w-full h-full rounded-full opacity-50 ${colorClasses.split(' ')[0].replace('text-', 'bg-')}`} />
             </div>
 
@@ -60,22 +52,22 @@ function EraSection({
                 className="mb-12"
             >
                 <div className="flex items-center gap-3 mb-2">
-                    <span className={`px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border bg-zinc-950/50 backdrop-blur-md ${colorClasses}`}>
+                    <span className={`px-4 py-1.5 rounded-full text-xs font-bold border backdrop-blur-md ${colorClasses}`}>
                         {years}
                     </span>
                 </div>
-                <h2 className="text-4xl md:text-6xl font-black tracking-tight text-white mb-2 flex items-center gap-4">
+                <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground mb-3 flex items-center gap-4">
                     {title}
-                    <Icon className={`w-8 h-8 md:w-12 md:h-12 opacity-50 ${colorClasses.split(' ')[0]}`} />
+                    <Icon className={`w-8 h-8 md:w-10 md:h-10 opacity-30 ${colorClasses.split(' ')[0]}`} />
                 </h2>
-                {data.school && <p className="text-lg text-muted-foreground">{data.school}</p>}
-                {data.strand && <p className="text-sm font-medium text-zinc-500 uppercase tracking-widest mt-1">{data.strand}</p>}
+                {data.school && <p className="text-lg text-muted-foreground font-medium">{data.school}</p>}
+                {data.strand && <p className="text-sm font-semibold text-zinc-500 dark:text-zinc-400 mt-1">{data.strand}</p>}
             </m.div>
 
             <div className="grid grid-cols-1 gap-12">
                 {items.map((section, idx) => (
                     <div key={idx}>
-                        <h3 className="flex items-center gap-3 text-sm font-bold uppercase tracking-[0.2em] text-zinc-500 mb-6 pl-2">
+                        <h3 className="flex items-center gap-3 text-sm font-bold text-zinc-500 dark:text-zinc-400 mb-6 pl-2">
                             <section.icon className="w-4 h-4" />
                             {section.category}
                         </h3>
@@ -87,16 +79,15 @@ function EraSection({
                                     viewport={{ once: true }}
                                     transition={{ delay: i * 0.05 + 0.2 }}
                                     key={i}
-                                    className="group relative p-6 rounded-2xl bg-zinc-900/20 hover:bg-zinc-900/40 border border-white/5 hover:border-white/10 transition-all duration-300 hover:-translate-y-1"
+                                    className="group relative p-6 rounded-2xl bg-zinc-50 dark:bg-zinc-900/40 hover:bg-white dark:hover:bg-zinc-900/60 border border-zinc-200 dark:border-white/5 hover:border-zinc-300 dark:hover:border-white/10 transition-all duration-300 hover:-translate-y-1 shadow-sm hover:shadow-md"
                                 >
-                                    <div className={`absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-${color}-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity`} />
+                                    <div className={`absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-${color}-500/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity`} />
                                     <div className="flex items-start gap-4">
-                                        <div className={`mt-1.5 w-1.5 h-1.5 rounded-full shrink-0 ${colorClasses.split(' ')[0].replace('text-', 'bg-')}`} />
-                                        <p className="text-sm md:text-base text-zinc-300 group-hover:text-white leading-relaxed font-light">
+                                        <div className={`mt-2 w-1.5 h-1.5 rounded-full shrink-0 ${colorClasses.split(' ')[0].replace('text-', 'bg-')}`} />
+                                        <p className="text-sm md:text-base text-zinc-700 dark:text-zinc-300 group-hover:text-foreground leading-relaxed font-light">
                                             {item}
                                         </p>
                                     </div>
-                                    <div className="absolute inset-0 bg-gradient-to-br from-white/[0.02] to-transparent opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity pointer-events-none" />
                                 </m.div>
                             ))}
                         </div>
@@ -112,7 +103,7 @@ export default function AchievementsPage() {
     const scaleX = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
     return (
-        <div className="w-full min-h-screen bg-black text-white selection:bg-white/20">
+        <div className="w-full min-h-screen bg-background text-foreground selection:bg-blue-500/20">
             <MacOSMenuBar appName="Achievement Archive" />
 
             {/* Progress Bar */}
@@ -121,22 +112,22 @@ export default function AchievementsPage() {
             <main className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-32">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-24 pl-4 md:pl-12">
                     <div>
-                        <Link href="/about" className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-white transition-colors mb-8 group">
+                        <Link href="/about" className="inline-flex items-center gap-2 text-sm font-bold text-muted-foreground hover:text-foreground transition-colors mb-8 group">
                             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                             Back to About
                         </Link>
-                        <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-6 bg-gradient-to-b from-white to-white/50 bg-clip-text text-transparent">
+                        <h1 className="text-5xl md:text-8xl font-black tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/50">
                             Achievement<br />Archive
                         </h1>
-                        <p className="text-xl text-zinc-400 max-w-2xl font-light leading-relaxed">
+                        <p className="text-xl text-muted-foreground max-w-2xl font-light leading-relaxed">
                             A comprehensive verification ledger of academic honors, competitive awards, and leadership roles spanning over a decade of dedication.
                         </p>
                     </div>
                     <div className="text-right hidden md:block">
-                        <p className="text-[120px] font-black text-zinc-900/50 leading-none select-none tracking-tighter">
+                        <p className="text-[120px] font-black text-foreground/5 leading-none select-none tracking-tighter">
                             2009
                         </p>
-                        <p className="text-[120px] font-black bg-gradient-to-b from-zinc-800 to-zinc-950 bg-clip-text text-transparent leading-[0.8] select-none tracking-tighter relative -top-4">
+                        <p className="text-[120px] font-black bg-gradient-to-b from-foreground/10 to-foreground/20 bg-clip-text text-transparent leading-[0.8] select-none tracking-tighter relative -top-4">
                             2025
                         </p>
                     </div>
@@ -173,11 +164,11 @@ export default function AchievementsPage() {
                     />
                 </div>
 
-                <div className="mt-24 pt-24 border-t border-white/5 text-center">
-                    <p className="text-sm text-zinc-500 uppercase tracking-widest mb-8">End of Archive</p>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-zinc-800 bg-zinc-900/50">
+                <div className="mt-24 pt-24 border-t border-zinc-200 dark:border-white/5 text-center">
+                    <p className="text-sm text-zinc-500 font-medium tracking-widest uppercase mb-8">End of Archive</p>
+                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-zinc-200 dark:border-zinc-800 bg-zinc-100 dark:bg-zinc-900/50">
                         <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                        <span className="text-xs font-medium text-zinc-400">Verified & Authentic Record</span>
+                        <span className="text-xs font-semibold text-zinc-600 dark:text-zinc-400">Verified & Authentic Record</span>
                     </div>
                 </div>
             </main>

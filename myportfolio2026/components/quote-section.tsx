@@ -71,56 +71,12 @@ export function QuoteSection() {
           <p className="text-lg md:text-xl text-muted-foreground font-medium">
             — Gian Aibo C. Boyero
           </p>
-          <p className="text-sm text-muted-foreground/85">
-            {copyMode === "plain" ? "Designer & Developer" : "Former CEO & GDG Organizer & GDSC Lead of USLS"}
+          <p className="text-sm text-muted-foreground/85 font-medium tracking-wide">
+            {copyMode === "plain" ? "Designer & Developer" : "Software Engineer & Community Leader"}
           </p>
-          <p className="text-xs text-muted-foreground/75">
-            {copyMode === "plain" ? "Helping Businesses Worldwide" : "Google Developer Programs"}
+          <p className="text-xs text-muted-foreground/75 uppercase tracking-widest">
+            {copyMode === "plain" ? "Helping Businesses Worldwide" : "Leading Tech Communities & Engineering Teams"}
           </p>
-        </m.div>
-
-        {/* Achievement badges */}
-        <m.div
-          variants={itemVariants}
-          className="flex flex-wrap justify-center gap-3 mt-12 scale-90"
-        >
-          {copyMode === "plain" ? (
-            <>
-              <div className="px-5 py-2 rounded-full bg-blue-500/10 border border-blue-500/25 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
-                <p className="text-[13px] font-semibold text-blue-600 dark:text-blue-300">
-                  Easy to work with
-                </p>
-              </div>
-              <div className="px-5 py-2 rounded-full bg-blue-500/10 border border-blue-500/25 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
-                <p className="text-[13px] font-semibold text-blue-600 dark:text-blue-300">
-                  Fast turnaround
-                </p>
-              </div>
-              <div className="px-5 py-2 rounded-full bg-blue-500/10 border border-blue-500/25 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
-                <p className="text-[13px] font-semibold text-blue-600 dark:text-blue-300">
-                  Modern design
-                </p>
-              </div>
-            </>
-          ) : (
-            <>
-              <div className="px-5 py-2 rounded-full bg-blue-500/10 border border-blue-500/25 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
-                <p className="text-[13px] font-semibold text-blue-600 dark:text-blue-300">
-                  Next.js App Router
-                </p>
-              </div>
-              <div className="px-5 py-2 rounded-full bg-blue-500/10 border border-blue-500/25 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
-                <p className="text-[13px] font-semibold text-blue-600 dark:text-blue-300">
-                  TypeScript & Tailwind
-                </p>
-              </div>
-              <div className="px-5 py-2 rounded-full bg-blue-500/10 border border-blue-500/25 backdrop-blur-sm shadow-sm hover:shadow-md transition-shadow">
-                <p className="text-[13px] font-semibold text-blue-600 dark:text-blue-300">
-                  Performance-first
-                </p>
-              </div>
-            </>
-          )}
         </m.div>
       </m.div>
     </section>
