@@ -33,8 +33,8 @@ const socialLinks = [
     },
     {
         name: "GitHub",
-        label: "@gianaibo",
-        href: "https://github.com/gianaibo",
+        label: "@gianaibodev",
+        href: "https://github.com/gianaibodev",
         icon: Github,
         color: "bg-zinc-800",
         description: "Code repositories & contributions"
@@ -49,8 +49,8 @@ const socialLinks = [
     },
     {
         name: "Facebook",
-        label: "gianheybo",
-        href: "https://facebook.com/gianheybo",
+        label: "aiboboyero",
+        href: "https://facebook.com/aiboboyero",
         icon: Facebook,
         color: "bg-blue-700",
         description: "Personal updates & community"
@@ -164,8 +164,8 @@ export default function ContactPage() {
                         <ContactMethod
                             icon={Mail}
                             title="Primary Email"
-                            value="hello@gianaibo.com"
-                            href="mailto:hello@gianaibo.com"
+                            value="gianaibo.dev@gmail.com"
+                            href="mailto:gianaibo.dev@gmail.com"
                             className="md:col-span-1"
                         />
                         <ContactMethod
@@ -178,7 +178,7 @@ export default function ContactPage() {
 
                         {/* Booking / Calendar Section */}
                         <a
-                            href="https://calendar.app.google/yourlink"
+                            href="https://calendar.google.com/calendar/render?action=TEMPLATE&add=gianaibo.dev@gmail.com"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="md:col-span-2 group relative overflow-hidden rounded-[32px] p-8 border border-blue-500/30 bg-blue-500/5 backdrop-blur-xl transition-all hover:scale-[1.01] active:scale-[0.99]"
@@ -228,7 +228,7 @@ export default function ContactPage() {
                                 </li>
                                 <li className="flex items-center justify-between text-sm">
                                     <span className="text-muted-foreground lowercase opacity-70">Full-time roles</span>
-                                    <span className="font-bold text-blue-500">Open to Chat</span>
+                                    <span className="font-bold text-blue-500 uppercase">Open to work</span>
                                 </li>
                                 <li className="flex items-center justify-between text-sm">
                                     <span className="text-muted-foreground lowercase opacity-70">Response time</span>

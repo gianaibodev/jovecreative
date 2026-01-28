@@ -50,8 +50,9 @@ const footerLinks: FooterSection[] = [
 		label: 'Social',
 		links: [
 			{ title: 'LinkedIn', href: 'https://linkedin.com/in/aiboboyero', icon: Linkedin, external: true },
-			{ title: 'Facebook', href: 'https://facebook.com/gianheybo', icon: Facebook, external: true },
+			{ title: 'Facebook', href: 'https://facebook.com/aiboboyero', icon: Facebook, external: true },
 			{ title: 'Instagram', href: 'https://instagram.com/gianheybo', icon: Instagram, external: true },
+			{ title: 'GitHub', href: 'https://github.com/gianaibodev', icon: Globe, external: true },
 			{ title: 'Threads', href: 'https://threads.net/@gianheybo', external: true },
 		],
 	},

@@ -111,7 +111,7 @@ export default function HomeClient({ galleryImages }: { galleryImages: GalleryIm
                   ? "I help businesses worldwide launch modern, fast, and mobile-friendly websites without the headache."
                   : "Crafting products where design meets performance. From strategy to key visuals, I build scalable digital solutions that convert."}
                 badgeText={copyMode === "plain" ? "2026 Portfolio" : "Portfolio 2026"}
-                badgeLabel="Available for hire"
+                badgeLabel="Open to work"
                 ctaButtons={[
                   { text: copyMode === "plain" ? "See My Work" : "View My Work", href: "#projects", primary: true },
                   { text: copyMode === "plain" ? "Read Technical Version" : "Read Simple Version", onClick: toggleCopyMode },
@@ -390,7 +390,7 @@ export default function HomeClient({ galleryImages }: { galleryImages: GalleryIm
             </m.p>
             <m.div variants={itemVariants} className="flex flex-wrap justify-center gap-4">
               <a
-                href="mailto:hello@gianaibo.com"
+                href="mailto:gianaibo.dev@gmail.com"
                 className="px-8 py-4 bg-blue-600 text-white rounded-full font-bold transition-all hover:scale-105 active:scale-95"
                 suppressHydrationWarning
               >

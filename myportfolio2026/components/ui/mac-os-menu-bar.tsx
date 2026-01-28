@@ -45,6 +45,7 @@ interface MacOSMenuBarProps {
 // Apple menu items
 const APPLE_MENU_ITEMS: MenuItemOption[] = [
   { label: 'About This Portfolio', action: 'about', href: '/about' },
+  { label: 'View Resume', href: '/lib/Resume%20-%20Gian%20Aibo%20Boyero.pdf' },
   { type: 'separator' },
   { label: 'System Settings...', action: 'preferences' },
   { label: 'Project Store...', action: 'app-store', href: '/projects' },
@@ -289,7 +290,7 @@ const MacOSMenuBar: React.FC<MacOSMenuBarProps> = ({
         { label: 'About', action: 'nav-about', href: '/about' },
         { label: 'Contact', action: 'nav-contact', href: '/contact' },
         { type: 'separator' },
-        { label: 'GitHub Profile', action: 'github', shortcut: '⇧⌘G' },
+        { label: 'GitHub Profile', action: 'github', href: 'https://github.com/gianaibodev', shortcut: '⇧⌘G' },
         { label: 'LinkedIn', action: 'linkedin', shortcut: '⇧⌘L' },
         { label: 'Instagram', action: 'instagram', shortcut: '⇧⌘I' },
       ],
