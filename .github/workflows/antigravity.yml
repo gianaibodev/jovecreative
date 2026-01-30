@@ -1,0 +1,42 @@
+name: Antigravity Quality Gate
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+          
+      - name: Install dependencies
+        run: cd myportfolio2026 && npm ci
+        
+      - name: TypeScript Strict Check
+        run: cd myportfolio2026 && npx tsc --noEmit
+        
+      - name: Lint Check
+        run: cd myportfolio2026 && npm run lint
+        
+      - name: Monolith Detection
+        run: |
+          find myportfolio2026 -type f \( -name "*.tsx" -o -name "*.ts" \) \
+            ! -path "myportfolio2026/node_modules/*" ! -path "myportfolio2026/.next/*" \
+            -exec wc -l {} + | awk '$1 > 351 {exit 1}' || \
+            (echo "❌ Files exceed 350 line limit" && exit 1)
+            
+      - name: Build Verification
+        run: cd myportfolio2026 && npm run build
+        
+      - name: Security Audit
+        run: cd myportfolio2026 && npm audit --audit-level=high
+        continue-on-error: false
