@@ -256,13 +256,14 @@ export function AnimatedFolder({ title, projects, className, color, href, isPinn
                             "z-50 relative px-6 py-2.5 rounded-full text-[13px] font-semibold transition-all duration-500",
                             "border border-white/20 shadow-lg backdrop-blur-md",
                             "text-white flex items-center gap-2",
-                            "md:opacity-0 md:translate-y-3",
-                            "md:group-hover:opacity-100 md:group-hover:translate-y-0",
                             "hover:scale-105 active:scale-95 group/btn"
                         )}
                         style={{
-                            backgroundColor: folderTabColor, // Using the folder's tab color for consistency
+                            backgroundColor: folderTabColor,
                             boxShadow: `0 8px 16px -4px ${folderGlowColor}, inset 0 1px 1px rgba(255,255,255,0.3)`,
+                            opacity: isHovered ? 1 : 0,
+                            transform: isHovered ? "translateY(0)" : "translateY(12px)",
+                            pointerEvents: isHovered ? "auto" : "none",
                         }}
                         onClick={(e) => e.stopPropagation()}
                     >
