@@ -7,6 +7,8 @@ import { PixelHeader } from "@/components/ui/pixel-header";
 import { ResponsiveImage } from "@/components/ui/responsive-image";
 import { StyledIframe } from "@/components/ui/styled-iframe";
 import { shaderCredits, libraryCredits } from "@/content/portfolio-documentation";
+import { CodeBlock } from "@/components/ui/code-block";
+import { parseCodeBlocks } from "@/lib/parse-code-blocks";
 
 export const dynamic = 'force-static';
 export const revalidate = 3600;
@@ -182,10 +184,33 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
               className="rounded-[24px] sm:rounded-[32px] border border-zinc-300 dark:border-white/10 backdrop-blur-2xl bg-white/5 dark:bg-white/[0.02] p-4 sm:p-6 md:p-8 space-y-3 sm:space-y-4"
             >
               <h2 className="text-xl sm:text-2xl font-semibold">{section.title}</h2>
-              <div className="space-y-3 sm:space-y-4 text-muted-foreground text-base sm:text-lg leading-relaxed">
-                {section.body.map((paragraph, index) => (
-                  <p key={index}>{paragraph}</p>
-                ))}
+              <div className="space-y-4 sm:space-y-5 text-muted-foreground text-base sm:text-lg leading-relaxed">
+                {section.body.map((paragraph, index) => {
+                  const parts = parseCodeBlocks(paragraph);
+
+                  // If no code blocks, render as simple paragraph
+                  if (parts.length === 1 && parts[0].type === 'text') {
+                    return <p key={index}>{paragraph}</p>;
+                  }
+
+                  // Render mixed content with code blocks
+                  return (
+                    <div key={index} className="space-y-4">
+                      {parts.map((part, partIndex) => (
+                        part.type === 'code' ? (
+                          <CodeBlock
+                            key={partIndex}
+                            code={part.content}
+                            language={part.language}
+                            showLineNumbers={true}
+                          />
+                        ) : (
+                          <p key={partIndex}>{part.content}</p>
+                        )
+                      ))}
+                    </div>
+                  );
+                })}
               </div>
               {section.iframe ? (
                 <div className="mt-6">
@@ -258,8 +283,8 @@ export default async function CaseStudyPage({ params }: CaseStudyPageProps) {
                 <Cpu className="w-16 h-12 text-blue-400 mx-auto mb-6 animate-pulse" />
                 <h3 className="text-3xl font-bold text-white mb-4">Architecture of Gian Aibo 2026</h3>
                 <p className="text-gray-100 text-lg font-normal max-w-2xl mx-auto leading-relaxed">
-                  This website is not just a showcase—it is the evidence. By merging code-driven engineering with 
-                  designer-grade artistry, I&apos;ve created a platform that lives and breathes in the GPU, ensuring 
+                  This website is not just a showcase—it is the evidence. By merging code-driven engineering with
+                  designer-grade artistry, I&apos;ve created a platform that lives and breathes in the GPU, ensuring
                   every interaction is as visceral as it is functional.
                 </p>
               </section>

@@ -68,16 +68,39 @@ export const ecommerceReviewAnalysis: CaseStudy = {
             ],
         },
         {
-            title: "Technical Implementation: The Code",
+            title: "Data Pipeline: Loading & Preprocessing",
             body: [
-                "```python\nimport openai\nimport pandas as pd\nfrom sklearn.manifold import TSNE\nimport matplotlib.pyplot as plt\n\n# Load and clean the reviews\ndf = pd.read_csv('womens_clothing_e-commerce_reviews.csv')\ndf = df.dropna(subset=['Review Text'])\nreviews = df['Review Text'].tolist()[:1000]  # Sample for visualization",
-                "```python\n# Generate embeddings for each review\ndef get_embedding(text: str) -> list:\n    response = openai.embeddings.create(\n        model=\"text-embedding-3-small\",\n        input=text\n    )\n    return response.data[0].embedding\n\nembeddings = [get_embedding(review) for review in reviews]",
-                "```python\n# Reduce to 2D with t-SNE\ntsne = TSNE(n_components=2, perplexity=30, random_state=42)\nembeddings_2d = tsne.fit_transform(embeddings)\n\n# Visualize with sentiment coloring\nplt.figure(figsize=(12, 8))\nscatter = plt.scatter(\n    embeddings_2d[:, 0], \n    embeddings_2d[:, 1],\n    c=df['Rating'][:1000],\n    cmap='RdYlGn',\n    alpha=0.6\n)\nplt.colorbar(scatter, label='Rating')\nplt.title('Customer Review Embeddings (t-SNE Projection)')\nplt.show()\n```",
+                "The embedding pipeline starts with loading and cleaning the dataset. We use pandas for data manipulation and filter out reviews with missing text:",
+                "```python\nimport openai\nimport pandas as pd\nimport numpy as np\nfrom sklearn.manifold import TSNE\nimport matplotlib.pyplot as plt\n\n# Load and clean the reviews dataset\ndf = pd.read_csv('womens_clothing_e-commerce_reviews.csv')\ndf = df.dropna(subset=['Review Text'])\nprint(f\"Loaded {len(df):,} reviews\")\n\n# Sample for visualization (full dataset is 23k+ rows)\nreviews = df['Review Text'].tolist()[:1000]\nratings = df['Rating'].tolist()[:1000]\nprint(f\"Sampled {len(reviews)} reviews for embedding\")\n```",
             ],
             highlights: [
-                "Embedding Generation Pipeline",
-                "t-SNE Dimensionality Reduction",
-                "Matplotlib Visualization",
+                "Pandas Data Loading",
+                "Missing Value Handling",
+                "Smart Sampling Strategy",
+            ],
+        },
+        {
+            title: "Embedding Generation: OpenAI API Integration",
+            body: [
+                "Each review is converted to a 1536-dimensional vector using OpenAI's text-embedding-3-small model. The function includes type hints and handles the API response structure:",
+                "```python\ndef get_embedding(text: str) -> list[float]:\n    \"\"\"Generate embedding vector for a text string.\"\"\"\n    response = openai.embeddings.create(\n        model=\"text-embedding-3-small\",\n        input=text\n    )\n    return response.data[0].embedding\n\n# Generate embeddings with progress tracking\nembeddings = []\nfor i, review in enumerate(reviews):\n    emb = get_embedding(review)\n    embeddings.append(emb)\n    if (i + 1) % 100 == 0:\n        print(f\"Processed {i + 1}/{len(reviews)} reviews\")\n\nembeddings = np.array(embeddings)\nprint(f\"Embedding matrix shape: {embeddings.shape}\")\n```",
+            ],
+            highlights: [
+                "1536-Dimensional Vectors",
+                "Progress Tracking",
+                "NumPy Array Conversion",
+            ],
+        },
+        {
+            title: "Visualization: t-SNE Projection",
+            body: [
+                "t-SNE reduces the 1536-dimensional embeddings to 2D while preserving local neighborhood structure. Reviews that are semantically similar will cluster together in the visualization:",
+                "```python\n# Apply t-SNE dimensionality reduction\nprint(\"Running t-SNE projection...\")\ntsne = TSNE(\n    n_components=2,\n    perplexity=30,\n    random_state=42,\n    n_iter=1000\n)\nembeddings_2d = tsne.fit_transform(embeddings)\n\n# Create visualization with rating-based coloring\nplt.figure(figsize=(14, 10))\nscatter = plt.scatter(\n    embeddings_2d[:, 0],\n    embeddings_2d[:, 1],\n    c=ratings,\n    cmap='RdYlGn',\n    alpha=0.6,\n    s=50\n)\nplt.colorbar(scatter, label='Customer Rating (1-5)')\nplt.title('E-commerce Review Embeddings')\nplt.xlabel('t-SNE Dimension 1')\nplt.ylabel('t-SNE Dimension 2')\nplt.savefig('review_clusters.png', dpi=300)\nprint(\"Saved visualization to review_clusters.png\")\n```",
+            ],
+            highlights: [
+                "2D Projection from 1536D",
+                "Rating-Based Coloring",
+                "Publication-Quality Export",
             ],
         },
         {

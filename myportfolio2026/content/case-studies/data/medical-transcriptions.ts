@@ -60,7 +60,7 @@ export const medicalTranscriptions: CaseStudy = {
             title: "The Solution: LLM-Powered Extraction Pipeline",
             body: [
                 "I built a Python pipeline using OpenAI's GPT-4o-mini with JSON mode to ensure structured, validated output. The key insight was using a carefully engineered prompt that instructs the model to extract specific fields while adhering to medical coding standards.",
-                "The core extraction function sends each transcription to the API with a system prompt that defines the exact JSON schema expected. Here's the actual implementation:",
+                "The system prompt defines the exact JSON schema expected, including field types and validation rules. This ensures the output is always machine-readable and consistent across thousands of transcriptions.",
             ],
             highlights: [
                 "GPT-4o-mini for Cost-Effective Processing",
@@ -69,16 +69,39 @@ export const medicalTranscriptions: CaseStudy = {
             ],
         },
         {
-            title: "Technical Implementation: The Code",
+            title: "Core Extraction Function",
             body: [
-                "```python\nimport openai\nimport json\n\ndef extract_medical_info(transcription: str) -> dict:\n    \"\"\"Extract structured medical data from a transcription.\"\"\"\n    \n    response = openai.chat.completions.create(\n        model=\"gpt-4o-mini\",\n        response_format={\"type\": \"json_object\"},\n        messages=[\n            {\n                \"role\": \"system\",\n                \"content\": \"\"\"You are a medical data extraction assistant.\n                Extract the following fields as JSON:\n                - patient_age: integer or null\n                - medical_specialty: string\n                - treatment_plan: string\n                - icd10_codes: list of ICD-10 diagnostic codes\n                - confidence_score: float between 0 and 1\"\"\"\n            },\n            {\"role\": \"user\", \"content\": transcription}\n        ]\n    )\n    \n    return json.loads(response.choices[0].message.content)\n```",
-                "The pipeline processes transcriptions in batches using Pandas. Each row is passed through the extraction function, and results are validated against the expected schema before being written to the output file.",
-                "```python\nimport pandas as pd\n\ndf = pd.read_csv('transcriptions.csv')\ndf['extracted_data'] = df['text'].apply(extract_medical_info)\n\n# Validate and flatten the nested JSON into columns\ndf['patient_age'] = df['extracted_data'].apply(lambda x: x.get('patient_age'))\ndf['icd10_codes'] = df['extracted_data'].apply(lambda x: x.get('icd10_codes', []))\n```",
+                "The extraction function sends each transcription to the API with a carefully crafted system prompt. JSON mode ensures the response is always parseable:",
+                "```python\nimport openai\nimport json\nfrom typing import Optional\n\ndef extract_medical_info(transcription: str) -> dict:\n    \"\"\"Extract structured medical data from a transcription.\"\"\"\n    \n    system_prompt = \"\"\"You are a medical data extraction assistant.\n    Extract the following fields as valid JSON:\n    - patient_age: integer or null if not mentioned\n    - medical_specialty: string (e.g., \"Cardiology\")\n    - treatment_plan: string summary of treatment\n    - icd10_codes: list of applicable ICD-10 codes\n    - confidence_score: float between 0.0 and 1.0\n    \n    Only output valid JSON. No explanations.\"\"\"\n    \n    response = openai.chat.completions.create(\n        model=\"gpt-4o-mini\",\n        response_format={\"type\": \"json_object\"},\n        messages=[\n            {\"role\": \"system\", \"content\": system_prompt},\n            {\"role\": \"user\", \"content\": transcription}\n        ],\n        temperature=0.1  # Low temperature for consistent extraction\n    )\n    \n    return json.loads(response.choices[0].message.content)\n```",
             ],
             highlights: [
-                "OpenAI JSON Mode API",
-                "Pandas Batch Processing",
-                "Schema Validation Pipeline",
+                "JSON Mode API",
+                "Schema-Enforced Output",
+                "Low Temperature for Consistency",
+            ],
+        },
+        {
+            title: "Batch Processing with Pandas",
+            body: [
+                "For production use, the pipeline processes entire datasets using Pandas. Each transcription is passed through the extraction function, with proper error handling and progress tracking:",
+                "```python\nimport pandas as pd\nfrom tqdm import tqdm\n\ndef process_transcriptions(input_file: str, output_file: str):\n    \"\"\"Process a CSV of transcriptions and save extracted data.\"\"\"\n    \n    df = pd.read_csv(input_file)\n    print(f\"Processing {len(df)} transcriptions...\")\n    \n    results = []\n    for idx, row in tqdm(df.iterrows(), total=len(df)):\n        try:\n            extracted = extract_medical_info(row['transcription'])\n            extracted['source_id'] = row['id']\n            results.append(extracted)\n        except Exception as e:\n            print(f\"Error processing row {idx}: {e}\")\n            results.append({'source_id': row['id'], 'error': str(e)})\n    \n    output_df = pd.DataFrame(results)\n    output_df.to_csv(output_file, index=False)\n    print(f\"Saved {len(output_df)} results to {output_file}\")\n\n# Run the pipeline\nprocess_transcriptions('transcriptions.csv', 'extracted_data.csv')\n```",
+            ],
+            highlights: [
+                "Pandas DataFrame Processing",
+                "Progress Tracking with tqdm",
+                "Error Handling & Recovery",
+            ],
+        },
+        {
+            title: "Output Validation & Flattening",
+            body: [
+                "After extraction, we validate and flatten the nested JSON into tabular format for analysis. The ICD-10 codes list is converted to a comma-separated string for CSV compatibility:",
+                "```python\n# Validate and flatten the extracted data\ndf = pd.read_csv('extracted_data.csv')\n\n# Convert ICD-10 codes list to string\ndf['icd10_codes_str'] = df['icd10_codes'].apply(\n    lambda x: ', '.join(eval(x)) if pd.notna(x) else ''\n)\n\n# Filter high-confidence extractions\nhigh_confidence = df[df['confidence_score'] >= 0.8]\nprint(f\"High-confidence extractions: {len(high_confidence)}\")\n\n# Summary statistics\nprint(f\"\\nSpecialty distribution:\")\nprint(df['medical_specialty'].value_counts().head(10))\n\nprint(f\"\\nAverage patient age: {df['patient_age'].mean():.1f}\")\nprint(f\"Total ICD-10 codes extracted: {df['icd10_codes_str'].str.count(',').sum() + len(df)}\")\n```",
+            ],
+            highlights: [
+                "Data Validation Pipeline",
+                "Confidence Filtering",
+                "Summary Statistics",
             ],
         },
         {
