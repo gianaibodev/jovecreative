@@ -59,14 +59,13 @@ export function AnimatedFolder({ title, projects, className, color, href, isPinn
     }
 
     const handleFolderClick = (e: React.MouseEvent) => {
-        // Only redirect on desktop (when hovered), not on mobile
-        // On mobile, users can tap project cards to preview them
-        if (href && isHovered && window.innerWidth >= 768) {
-            // Add delay to allow microinteractions to be seen
-            setTimeout(() => {
-                router.push(href)
-            }, 5000)
+        // Toggle open/close on mobile/touch
+        if (window.innerWidth < 768) {
+            setIsHovered(!isHovered)
         }
+        // On desktop, hover handles open/close. 
+        // We do NOT navigate on click anymore, allowing users to "play" with the folder.
+        // Navigation is handled by the "Explore Category" button or lightbox details.
     }
 
     return (

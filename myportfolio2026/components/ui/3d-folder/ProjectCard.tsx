@@ -14,7 +14,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
             <div
                 ref={ref}
                 className={cn(
-                    "absolute w-20 h-28 rounded-lg overflow-hidden shadow-xl",
+                    "absolute w-24 h-20 rounded-lg overflow-hidden shadow-xl", // increased width, decreased height for better aspect ratio
                     "bg-card border border-border",
                     "cursor-pointer hover:ring-2 hover:ring-accent/50",
                     isSelected && "opacity-0",
@@ -26,8 +26,8 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
                     opacity: isSelected ? 0 : isVisible ? 1 : 0,
                     transition: `all 600ms cubic-bezier(0.34, 1.56, 0.64, 1) ${delay}ms`,
                     zIndex: 10 - index,
-                    left: "-40px",
-                    top: "-56px",
+                    left: "-48px", // Half of w-24 (96px)
+                    top: "-40px",  // Half of h-20 (80px)
                 }}
                 onClick={(e) => {
                     e.stopPropagation()
@@ -41,7 +41,7 @@ export const ProjectCard = forwardRef<HTMLDivElement, ProjectCardProps>(
                         fill
                         priority
                         loading="eager"
-                        className="object-contain"
+                        className="object-cover bg-muted/20"
                     />
                 </div>
                 <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
