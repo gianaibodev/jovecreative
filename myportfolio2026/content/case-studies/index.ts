@@ -25,6 +25,7 @@ import { portfolio2026 } from "./data/portfolio-2026";
 import { medicalTranscriptions } from "./data/medical-transcriptions";
 import { aiTravelGuide } from "./data/ai-travel-guide";
 import { ecommerceReviewAnalysis } from "./data/ecommerce-review-analysis";
+import { aiEngineerExam } from "./data/ai-engineer-exam";
 
 // Re-export types
 export * from "./types";
@@ -54,6 +55,7 @@ const rawData: CaseStudy[] = [
     medicalTranscriptions,
     aiTravelGuide,
     ecommerceReviewAnalysis,
+    aiEngineerExam,
 ];
 
 // Validate data against schema (Ensures defaults like [] are applied if missing, matching original behavior)

@@ -1,0 +1,20 @@
+[
+  {
+    "query_text": "How do I reset my password?",
+    "retrieved_response": "What's the process for resetting my password?",
+    "timestamp": "2026-01-09T09:00:10.514268+00:00",
+    "confidence_score": 0.8268369867596215
+  },
+  {
+    "query_text": "When can I talk to someone from support?",
+    "retrieved_response": "When is your support team available?",
+    "timestamp": "2026-01-09T09:00:10.822398+00:00",
+    "confidence_score": 0.6820928639808128
+  },
+  {
+    "query_text": "Can I get a refund if I return the item?",
+    "retrieved_response": "Can I request a refund?",
+    "timestamp": "2026-01-09T09:00:11.062585+00:00",
+    "confidence_score": 0.7637059958428056
+  }
+]
