@@ -25,7 +25,7 @@ export function PixelHeader({
   children,
 }: PixelHeaderProps) {
   return (
-    <div className="relative w-full h-[250px] sm:h-[300px] md:h-[350px] overflow-hidden">
+    <div className="relative w-full h-[310px] sm:h-[360px] md:h-[410px] pt-[60px] sm:pt-[70px] overflow-hidden">
       <MeshGradient
         colors={colors}
         swirl={0.75}

@@ -7,24 +7,27 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
     useEffect(() => {
         const isMobile = window.innerWidth < 768;
         const lenis = new Lenis({
-            duration: isMobile ? 4.0 : 1.5,
+            duration: isMobile ? 3.0 : 1.0,
             easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
             orientation: "vertical",
             gestureOrientation: "vertical",
             smoothWheel: true,
-            wheelMultiplier: 1.0,
-            touchMultiplier: 2,
+            wheelMultiplier: isMobile ? 1.0 : 1.2,
+            touchMultiplier: isMobile ? 1.5 : 2,
+            infinite: false,
+            autoResize: true,
         });
 
         // @ts-expect-error - Attach lenis to window for global control
         window.lenis = lenis;
 
+        let animationFrame: number;
         function raf(time: number) {
             lenis.raf(time);
-            requestAnimationFrame(raf);
+            animationFrame = requestAnimationFrame(raf);
         }
 
-        requestAnimationFrame(raf);
+        animationFrame = requestAnimationFrame(raf);
 
         // Recalculate scroll dimensions periodically and on resize
         // This ensures the footer is always reachable
@@ -48,6 +51,8 @@ export function SmoothScroll({ children }: { children: ReactNode }) {
         }, 2000);
 
         return () => {
+            cancelAnimationFrame(animationFrame);
+            lenis.stop();
             // @ts-expect-error - Cleanup
             window.lenis = null;
             lenis.destroy();
