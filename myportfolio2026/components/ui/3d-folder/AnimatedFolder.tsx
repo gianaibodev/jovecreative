@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { cn } from "@/lib/utils"
 import { FolderOpen, Star } from "lucide-react"
 import { useTheme } from "next-themes"
@@ -58,14 +58,22 @@ export function AnimatedFolder({ title, projects, className, color, href, isPinn
         setHiddenCardId(projects[newIndex]?.id || null)
     }
 
+    // Auto-navigate after 10 seconds of being open (to let users "experience" it)
+    useEffect(() => {
+        let timer: NodeJS.Timeout;
+        if (isHovered && href) {
+            timer = setTimeout(() => {
+                router.push(href);
+            }, 10000); // 10 seconds delay
+        }
+        return () => clearTimeout(timer);
+    }, [isHovered, href, router]);
+
     const handleFolderClick = (e: React.MouseEvent) => {
         // Toggle open/close on mobile/touch
         if (window.innerWidth < 768) {
             setIsHovered(!isHovered)
         }
-        // On desktop, hover handles open/close. 
-        // We do NOT navigate on click anymore, allowing users to "play" with the folder.
-        // Navigation is handled by the "Explore Category" button or lightbox details.
     }
 
     return (

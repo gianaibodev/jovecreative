@@ -283,7 +283,7 @@ function StatsOverview() {
                 color: "text-emerald-500",
             },
             {
-                label: "Years of Excellence",
+                label: "Academic Journey",
                 value: 16,
                 icon: Sparkles,
                 color: "text-rose-500",
@@ -330,11 +330,7 @@ export default function AchievementsPage() {
         <div className="w-full min-h-screen bg-background text-foreground selection:bg-blue-500/20">
             <MacOSMenuBar appName="Achievement Archive" />
 
-            {/* Progress Bar */}
-            <m.div
-                style={{ scaleX }}
-                className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 origin-left z-50"
-            />
+            {/* Progress Bar removed to reduce flickering/distraction */}
 
             <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-32">
                 {/* Header */}
@@ -362,7 +358,7 @@ export default function AchievementsPage() {
                             >
                                 Achievement
                                 <br />
-                                <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                                <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
                                     Archive
                                 </span>
                             </m.h1>

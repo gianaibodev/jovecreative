@@ -171,8 +171,8 @@ export default function ContactPage() {
                         <ContactMethod
                             icon={MessageCircle}
                             title="Secondary Email"
-                            value="gianaibo.dev@gmail.com"
-                            href="mailto:gianaibo.dev@gmail.com"
+                            value="gianaiboboyero@gmail.com"
+                            href="mailto:gianaiboboyero@gmail.com"
                             className="md:col-span-1"
                         />
 

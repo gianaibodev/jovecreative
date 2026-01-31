@@ -72,21 +72,22 @@ export const FloatingConsultButton = ({
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             className="fixed bottom-32 right-6 z-[110] backdrop-blur-3xl bg-white/80 dark:bg-black/60 border border-zinc-300 dark:border-white/[0.12] rounded-[28px] shadow-2xl p-6 lg:p-8 max-w-[340px] w-[calc(100vw-3rem)]"
           >
-            <button
-              onClick={() => setIsOpen(false)}
-              className="absolute top-3 right-3 text-foreground/40 hover:text-foreground transition-colors p-1.5"
-            >
-              <X size={20} />
-            </button>
-
             <div className="space-y-5">
               <div className="flex items-start justify-between gap-4">
                 <h3 className="text-2xl lg:text-3xl font-bold text-foreground leading-tight tracking-tight">
                   {popupHeading}
                 </h3>
-                <span className="shrink-0 text-blue-600 dark:text-blue-300 px-3 py-1 bg-blue-500/10 dark:bg-white/[0.05] border border-blue-500/20 dark:border-white/[0.12] rounded-full text-[10px] font-bold uppercase tracking-widest backdrop-blur-xl">
-                  {popupBadgeText}
-                </span>
+                <div className="flex items-center gap-3 shrink-0">
+                  <span className="text-blue-600 dark:text-blue-300 px-3 py-1 bg-blue-500/10 dark:bg-white/[0.05] border border-blue-500/20 dark:border-white/[0.12] rounded-full text-[10px] font-bold uppercase tracking-widest backdrop-blur-xl">
+                    {popupBadgeText}
+                  </span>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    className="text-foreground/40 hover:text-foreground transition-colors p-1"
+                  >
+                    <X size={20} />
+                  </button>
+                </div>
               </div>
 
               <p className="text-sm lg:text-base text-muted-foreground leading-relaxed font-normal opacity-90">
