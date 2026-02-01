@@ -20,9 +20,9 @@ export const aiTravelGuide: CaseStudy = {
         "Personalized itinerary suggestions",
         "Local insights and cultural tips",
     ],
-    heroImage: "/projects/ai/ai-travel-guide-paris/images/eiffel-tower.png",
+    heroImage: "/projects/ai/ai-travel-guide-paris/images/hero.png",
     gallery: [
-        "/projects/ai/ai-travel-guide-paris/images/eiffel-tower.png",
+        "/projects/ai/ai-travel-guide-paris/images/hero.png",
     ],
     deliverables: [
         "Conversational AI System",

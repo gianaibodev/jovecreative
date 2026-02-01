@@ -20,9 +20,9 @@ export const ecommerceReviewAnalysis: CaseStudy = {
         "Automated sentiment pattern detection",
         "Product category clustering analysis",
     ],
-    heroImage: "/projects/ai/ecommerce-review-analysis/images/clothing.jpg",
+    heroImage: "/projects/ai/ecommerce-review-analysis/images/hero.png",
     gallery: [
-        "/projects/ai/ecommerce-review-analysis/images/clothing.jpg",
+        "/projects/ai/ecommerce-review-analysis/images/hero.png",
     ],
     deliverables: [
         "Text Embedding Pipeline",

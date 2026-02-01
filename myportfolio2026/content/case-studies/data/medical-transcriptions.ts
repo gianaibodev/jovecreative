@@ -20,9 +20,9 @@ export const medicalTranscriptions: CaseStudy = {
         "JSON schema validation for data integrity",
         "Batch processing capability for large datasets",
     ],
-    heroImage: "/projects/ai/medical-transcriptions-openai/images/med-tran.png",
+    heroImage: "/projects/ai/medical-transcriptions-openai/images/hero.png",
     gallery: [
-        "/projects/ai/medical-transcriptions-openai/images/med-tran.png",
+        "/projects/ai/medical-transcriptions-openai/images/hero.png",
     ],
     deliverables: [
         "Python Data Extraction Pipeline",
