@@ -40,8 +40,8 @@ const footerLinks: FooterSection[] = [
 		label: 'Contact',
 		links: [
 			{ title: 'gianaibo.dev@gmail.com', href: 'mailto:gianaibo.dev@gmail.com', icon: Mail },
-			{ title: '+63 962 644 2911', href: 'tel:+639626442911', icon: Phone },
-			{ title: 'WhatsApp', href: 'https://wa.me/639626442911', icon: MessageCircle, external: true },
+			{ title: '+63 907 047 0241', href: 'tel:+639070470241', icon: Phone },
+			{ title: 'WhatsApp', href: 'https://wa.me/639070470241', icon: MessageCircle, external: true },
 			{ title: 'Telegram @gibandtake', href: 'https://t.me/gibandtake', icon: Send, external: true },
 			{ title: 'gianaibo.tech', href: 'https://gianaibo.tech', icon: Globe, external: true },
 		],
@@ -93,7 +93,7 @@ export function Footer() {
 							</div>
 						</Link>
 						<p className="text-muted-foreground text-sm leading-relaxed max-w-xs">
-							Design Engineer with full-stack capabilities — UI/UX Designer, Graphic Designer & AI Engineer based in the Philippines.
+							Frontend Developer specializing in rapid product development via AI-assisted tools. Bridging Figma designs and React applications.
 						</p>
 						<p className="text-muted-foreground text-xs">
 							© {new Date().getFullYear()} Gian Aibo Boyero. All rights reserved.
