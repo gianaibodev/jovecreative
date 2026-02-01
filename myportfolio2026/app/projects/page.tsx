@@ -89,8 +89,10 @@ export default function ProjectsPage() {
         >
           SKIP INTRO
         </button>
-        <div className="fixed bottom-12 left-1/2 -translate-x-1/2 z-[100000] text-white/50 text-[10px] uppercase tracking-widest font-medium pointer-events-none">
-          Hold spacebar to interact • Press Skip to continue
+        <div className="fixed bottom-12 left-1/2 -translate-x-1/2 z-[100000] text-white/50 text-[10px] uppercase tracking-widest font-medium pointer-events-none text-center px-4">
+          <span className="hidden sm:inline">Hold spacebar to interact</span>
+          <span className="sm:hidden">Tap and hold to interact</span>
+          <span> • Press Skip to continue</span>
         </div>
       </div>
     );

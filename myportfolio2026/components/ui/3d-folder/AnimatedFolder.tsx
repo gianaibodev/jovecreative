@@ -272,7 +272,7 @@ export function AnimatedFolder({ title, projects, className, color, href, isPinn
                     </Link>
                 )}
 
-                {/* Hover hint */}
+                {/* Hover hint - responsive text */}
                 <div
                     className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 text-xs text-muted-foreground transition-all duration-300"
                     style={{
@@ -280,7 +280,8 @@ export function AnimatedFolder({ title, projects, className, color, href, isPinn
                         transform: isHovered ? "translateY(10px)" : "translateY(0)",
                     }}
                 >
-                    <span>Hover to explore</span>
+                    <span className="hidden md:inline">Hover to explore</span>
+                    <span className="md:hidden">Tap to open</span>
                 </div>
             </div>
 

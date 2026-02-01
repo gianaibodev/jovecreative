@@ -23,6 +23,11 @@ export function SplineSceneBasic() {
             Bring your UI to life with beautiful 3D scenes. Create immersive experiences
             that capture attention and enhance your design.
           </p>
+          {/* Interaction hint */}
+          <p className="mt-4 text-xs text-muted-foreground/60 uppercase tracking-widest">
+            <span className="hidden md:inline">Drag to rotate</span>
+            <span className="md:hidden">Touch to interact</span>
+          </p>
         </div>
 
         {/* Right content */}
