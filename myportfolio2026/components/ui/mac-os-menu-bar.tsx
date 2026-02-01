@@ -45,7 +45,7 @@ interface MacOSMenuBarProps {
 // Apple menu items
 const APPLE_MENU_ITEMS: MenuItemOption[] = [
   { label: 'About This Portfolio', action: 'about', href: '/about' },
-  { label: 'View Resume', href: '/lib/Resume%20-%20Gian%20Aibo%20Boyero.pdf' },
+  { label: 'View Resume', href: '/resume.pdf' },
   { type: 'separator' },
   { label: 'System Settings...', action: 'preferences' },
   { label: 'Project Store...', action: 'app-store', href: '/projects' },

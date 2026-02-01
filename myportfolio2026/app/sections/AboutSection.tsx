@@ -149,7 +149,7 @@ export function AboutSection({ variants, itemVariants }: { variants: any, itemVa
                                 <span>Know More About Me</span>
                             </a>
                             <a
-                                href="/lib/Resume%20-%20Gian%20Aibo%20Boyero.pdf"
+                                href="/resume.pdf"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="inline-flex items-center gap-3 px-8 py-4 rounded-full border border-zinc-200 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors font-medium"

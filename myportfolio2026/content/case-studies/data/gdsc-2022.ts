@@ -23,7 +23,6 @@ export const gdsc2022: CaseStudy = {
         "/legacy/assets/demopic/5-a.jpeg",
         "/legacy/assets/demopic/5-d.jpg",
         "/legacy/assets/demopic/5-e.jpg",
-        "/legacy/assets/demopic/5-f.jpg",
     ],
     deliverables: [
         "Hierarchical Core Team System",

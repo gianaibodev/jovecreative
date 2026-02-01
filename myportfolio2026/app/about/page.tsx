@@ -52,7 +52,7 @@ export default function AboutPage() {
       >
         <div className="mt-6 flex justify-center">
           <a
-            href="/lib/Resume%20-%20Gian%20Aibo%20Boyero.pdf"
+            href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-blue-600 text-white font-bold hover:bg-blue-700 transition-colors text-sm"
